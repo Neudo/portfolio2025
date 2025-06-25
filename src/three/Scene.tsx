@@ -1,37 +1,26 @@
-import React, { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-  Environment,
-  OrbitControls,
-  PerspectiveCamera,
-} from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { Environment, ScrollControls } from "@react-three/drei";
+import City from "./models/City";
 
 export default function Scene() {
-  const city = useLoader(GLTFLoader, "./gltf/low_poly_city.glb");
-  const car = useLoader(GLTFLoader, "./gltf/car.glb");
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    // Wrapper qui détermine la durée du scroll « pin »
-    <div style={{ height: "800vh", position: "absolute", top: 0, left: 0 }}>
-      <div
-        id="about"
-        style={{
-          position: "sticky",
-          top: 0,
-          width: "100vw",
-          height: "100vh",
-          zIndex: 10,
-        }}
-      >
-        <Canvas style={{ width: "100%", height: "100%" }}>
+    <div
+      id="about"
+      ref={containerRef}
+      className="relative h-[600vh] w-full overflow-hidden"
+    >
+      <div className="h-[100vh] w-full overflow-hidden fixed top-0 left-0">
+        <Canvas
+          style={{ width: "100%", height: "100%" }}
+          shadows
+          camera={{ position: [20, 40, 300] }}
+        >
           <Suspense fallback={null}>
             <Environment preset="city" />
-            <PerspectiveCamera makeDefault position={[20, 40, 170]} />
-            <ambientLight intensity={1} />
-            <primitive object={city.scene} scale={1} />
-            <primitive object={car.scene} scale={0.008} />
+            <City />
           </Suspense>
         </Canvas>
       </div>

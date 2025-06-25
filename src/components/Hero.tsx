@@ -1,11 +1,10 @@
 import imageQuentin from "@/../public/images/quentin-img.jpg";
 import Cta from "./layout/ui/Cta";
 import { ArrowDown } from "lucide-react";
-import { motion } from "motion/react";
 
 export default function Hero() {
   return (
-    <motion.div className="bg-green-950 text-white p-4 md:p-16 min-h-[90svh] flex items-end l-0 w-full relative z-20">
+    <div className="bg-green-950 text-white p-4 md:p-16 min-h-[90svh] flex items-end l-0 w-full relative top-0 left-0 z-20">
       <div className="flex flex-col w-full mx-auto h-full ">
         <div className="max-w-[1410px] mx-auto w-full flex items-center">
           <div className="flex w-full justify-center flex-col h-full">
@@ -27,6 +26,6 @@ export default function Hero() {
         </div>
         <ArrowDown className="mx-auto animate-bounce" />
       </div>
-    </motion.div>
+    </div>
   );
 }
