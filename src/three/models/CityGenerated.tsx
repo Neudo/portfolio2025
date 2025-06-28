@@ -29,35 +29,6 @@ export default function CityGenerated(props: JSX.IntrinsicElements["group"]) {
     "/gltf/low_poly_city.glb"
   ) as unknown as GLTFResult;
 
-  //   tl.current = gsap.timeline();
-
-  //   // ZOOM ANIMATION
-  //   tl.current.to(
-  //     ref.current.scale,
-  //     {
-  //       duration: 2,
-  //       x: 3,
-  //       y: 3,
-  //       z: 3,
-  //     },
-  //     0
-  //   );
-
-  //   // ROTATION ANIMATION
-  //   tl.current.to(
-  //     ref.current.rotation,
-  //     {
-  //       duration: 2,
-  //       y: -Math.PI / 2,
-  //     },
-  //     0
-  //   );
-  // }, []);
-
-  // useFrame(() => {
-  //   tl.current.seek(scroll.offset * tl.current.duration());
-  // });
-
   return (
     <group {...props} dispose={null}>
       <group scale={0.01}>

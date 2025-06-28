@@ -64,17 +64,7 @@ const Scene = ({
   return (
     <>
       <DebugCurve curve={cameraCurve} />
-      <Environment
-        background
-        files={[
-          "/cubemap/px.webp",
-          "/cubemap/nx.webp",
-          "/cubemap/py.webp",
-          "/cubemap/ny.webp",
-          "/cubemap/pz.webp",
-          "/cubemap/nz.webp",
-        ]}
-      />
+      <Environment preset="sunset" />
       <Suspense fallback={null}>
         <ScrollControls pages={8} damping={0.25}>
           <CityGenerated />
@@ -117,24 +107,22 @@ export default function Experience() {
       <div className="h-[100vh] w-full overflow-hidden fixed top-0 left-0">
         <StrictMode>
           <Canvas style={{ width: "100%", height: "100%" }}>
-            <ScrollControls pages={8} damping={0.25}>
-              <ambientLight intensity={0.4} />
-              <Scene
-                camera={cameraLeft}
-                setScrollProgress={setScrollProgress}
-                scrollProgress={scrollProgress}
-                targetScrollProgress={targetScrollProgress}
-                lerpFactor={lerpFactor}
-              />
+            <ambientLight intensity={0.4} />
+            <Scene
+              camera={cameraLeft}
+              setScrollProgress={setScrollProgress}
+              scrollProgress={scrollProgress}
+              targetScrollProgress={targetScrollProgress}
+              lerpFactor={lerpFactor}
+            />
 
-              <PerspectiveCamera
-                ref={cameraLeft}
-                makeDefault
-                fov={70}
-                position={[160, 20, -57]}
-              />
-              <OrbitControls ref={controlsLeft} camera={cameraLeft.current} />
-            </ScrollControls>
+            <PerspectiveCamera
+              ref={cameraLeft}
+              makeDefault
+              fov={70}
+              position={[160, 20, -57]}
+            />
+            <OrbitControls ref={controlsLeft} camera={cameraLeft.current} />
           </Canvas>
         </StrictMode>
       </div>
