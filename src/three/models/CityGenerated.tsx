@@ -7,52 +7,59 @@ Source: https://sketchfab.com/3d-models/low-poly-city-41697300a4c643d089784b8688
 Title: Low Poly City
 */
 
-import React, { useLayoutEffect, useRef } from "react";
-import { useGLTF, useScroll } from "@react-three/drei";
-import gsap from "gsap";
-import { useFrame } from "@react-three/fiber";
+import { useRef, type JSX } from "react";
+import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
+import type { GLTF } from "three-stdlib";
 
 export const FLOOR_HEIGHT = 2.3;
 export const NB_FLOORS = 3;
 
-export default function CityGenerated(props) {
-  const ref = useRef<any>(null);
-  const tl = useRef<any>(null);
-  const { nodes, materials } = useGLTF("/gltf/low_poly_city.glb");
-  const scroll = useScroll();
+type GLTFResult = GLTF & {
+  nodes: {
+    [key: string]: THREE.Mesh;
+  };
+  materials: {
+    [key: string]: THREE.Material;
+  };
+};
 
-  useLayoutEffect(() => {
-    tl.current = gsap.timeline();
+export default function CityGenerated(props: JSX.IntrinsicElements["group"]) {
+  const { nodes, materials } = useGLTF(
+    "/gltf/low_poly_city.glb"
+  ) as unknown as GLTFResult;
 
-    // ZOOM ANIMATION
-    tl.current.to(
-      ref.current.scale,
-      {
-        duration: 2,
-        x: 3,
-        y: 3,
-        z: 3,
-      },
-      0
-    );
+  //   tl.current = gsap.timeline();
 
-    // ROTATION ANIMATION
-    tl.current.to(
-      ref.current.rotation,
-      {
-        duration: 2,
-        y: -Math.PI / 2,
-      },
-      0
-    );
-  }, []);
+  //   // ZOOM ANIMATION
+  //   tl.current.to(
+  //     ref.current.scale,
+  //     {
+  //       duration: 2,
+  //       x: 3,
+  //       y: 3,
+  //       z: 3,
+  //     },
+  //     0
+  //   );
 
-  useFrame(() => {
-    tl.current.seek(scroll.offset * tl.current.duration());
-  });
+  //   // ROTATION ANIMATION
+  //   tl.current.to(
+  //     ref.current.rotation,
+  //     {
+  //       duration: 2,
+  //       y: -Math.PI / 2,
+  //     },
+  //     0
+  //   );
+  // }, []);
+
+  // useFrame(() => {
+  //   tl.current.seek(scroll.offset * tl.current.duration());
+  // });
 
   return (
-    <group {...props} dispose={null} ref={ref}>
+    <group {...props} dispose={null}>
       <group scale={0.01}>
         <group
           position={[717.666, 216.29, 846.016]}

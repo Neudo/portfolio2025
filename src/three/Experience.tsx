@@ -1,12 +1,10 @@
 import { StrictMode, Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  CameraControls,
   Environment,
   OrbitControls,
   PerspectiveCamera,
   ScrollControls,
-  View,
   useHelper,
 } from "@react-three/drei";
 import CityGenerated from "./models/CityGenerated";
