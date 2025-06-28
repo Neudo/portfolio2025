@@ -2,7 +2,6 @@ import { StrictMode, Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Environment,
-  OrbitControls,
   PerspectiveCamera,
   ScrollControls,
 } from "@react-three/drei";
@@ -54,6 +53,10 @@ const Scene = ({
 
       const point = cameraCurve.getPoint(newProgress);
       camera.current.position.copy(point);
+
+      // Make camera look at city center
+      const target = new THREE.Vector3(0, 0, 0);
+      camera.current.lookAt(target);
     }
   });
 
@@ -71,7 +74,6 @@ const Scene = ({
 };
 
 export default function Experience() {
-  const controlsLeft = useRef<any>(null);
   const cameraLeft = useRef<any>(null);
 
   // Add leva debug for lerpfactor & scrollSpeed
@@ -116,9 +118,8 @@ export default function Experience() {
               ref={cameraLeft}
               makeDefault
               fov={70}
-              position={[160, 20, -57]}
+              position={[248, 34, -4.7]}
             />
-            <OrbitControls ref={controlsLeft} camera={cameraLeft.current} />
           </Canvas>
         </StrictMode>
       </div>
