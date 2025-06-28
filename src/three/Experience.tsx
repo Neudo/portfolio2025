@@ -5,25 +5,21 @@ import {
   OrbitControls,
   PerspectiveCamera,
   ScrollControls,
-  useHelper,
 } from "@react-three/drei";
 import CityGenerated from "./models/CityGenerated";
 import * as THREE from "three";
 import { useControls } from "leva";
-
-const CameraHelper = ({ cameraRef }: { cameraRef: any }) => {
-  useHelper(cameraRef, THREE.CameraHelper);
-  return null;
-};
 
 const DebugCurve = ({ curve }: { curve: any }) => {
   const points = curve.getPoints(500);
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
   return (
-    <line geometry={geometry}>
-      <lineBasicMaterial color="red" />
-    </line>
+    <primitive
+      object={
+        new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "red" }))
+      }
+    />
   );
 };
 

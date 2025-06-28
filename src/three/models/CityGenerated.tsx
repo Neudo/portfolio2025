@@ -7,7 +7,7 @@ Source: https://sketchfab.com/3d-models/low-poly-city-41697300a4c643d089784b8688
 Title: Low Poly City
 */
 
-import { useRef, type JSX } from "react";
+import { type JSX } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import type { GLTF } from "three-stdlib";
