@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/layout/Footer";
 import Contact from "@/components/Contact";
-import Scene from "@/three/Scene";
+import Experience from "@/three/Experience";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -13,9 +13,9 @@ export const Route = createFileRoute("/")({
 function App() {
   return (
     <div className="App font-poppins">
-      <Header />
-      <Hero />
-      <Scene />
+      {/* <Header /> */}
+      {/* <Hero /> */}
+      <Experience />
       <Contact />
       <Footer />
     </div>
