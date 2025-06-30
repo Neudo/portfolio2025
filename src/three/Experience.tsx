@@ -5,7 +5,7 @@ import {
   PerspectiveCamera,
   ScrollControls,
 } from "@react-three/drei";
-import CityGenerated from "./models/CityGenerated";
+import CityFinal from "./models/CityFinal";
 import * as THREE from "three";
 import { useControls } from "leva";
 
@@ -36,9 +36,9 @@ const Scene = ({
   lerpFactor?: any;
 }) => {
   const cameraCurve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(248, 34, -4.7),
-    new THREE.Vector3(96, 6, -69),
-    new THREE.Vector3(65, 6, -75),
+    new THREE.Vector3(100, 34, -4.7),
+    new THREE.Vector3(46, 6, -69),
+    new THREE.Vector3(25, 6, -75),
   ]);
 
   useFrame(() => {
@@ -66,7 +66,7 @@ const Scene = ({
       <Environment preset="sunset" />
       <Suspense fallback={null}>
         <ScrollControls pages={8} damping={0.25}>
-          <CityGenerated />
+          <CityFinal />
         </ScrollControls>
       </Suspense>
     </>
@@ -76,7 +76,6 @@ const Scene = ({
 export default function Experience() {
   const cameraLeft = useRef<any>(null);
 
-  // Add leva debug for lerpfactor & scrollSpeed
   const controls = useControls({
     lerpFactor: { value: 0.02, min: 0, max: 1, step: 0.01 },
     scrollSpeed: { value: 0.003, min: 0, max: 0.01, step: 0.0001 },
