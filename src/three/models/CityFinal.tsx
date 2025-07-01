@@ -1,7 +1,21 @@
 import { useGLTF } from "@react-three/drei";
+import * as THREE from "three";
+import { type JSX } from "react";
+import type { GLTF } from "three-stdlib";
 
-export default function Model(props) {
-  const { nodes, materials } = useGLTF("/public/gltf/city_final.glb");
+type GLTFResult = GLTF & {
+  nodes: {
+    [key: string]: THREE.Mesh;
+  };
+  materials: {
+    [key: string]: THREE.Material;
+  };
+};
+
+export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
+  const { nodes, materials } = useGLTF(
+    "/public/gltf/city_final.glb"
+  ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
       <mesh
