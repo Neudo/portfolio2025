@@ -2,6 +2,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { type JSX } from "react";
 import type { GLTF } from "three-stdlib";
+import { useControls } from "leva";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -16,6 +17,55 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(
     "/gltf/city_final.glb"
   ) as unknown as GLTFResult;
+
+  // GitHub logo controls
+  const githubControls = useControls("GitHub Logo", {
+    position: {
+      value: { x: 6.49, y: 13.3, z: 28.65 },
+      step: 0.01,
+    },
+    rotation: {
+      value: { x: -4.8, y: 0, z: 3.081 },
+      step: 0.01,
+    },
+    innerPosition: {
+      value: { x: -2.06, y: 0.94, z: -2.66 },
+      step: 0.01,
+    },
+  });
+
+  // LinkedIn logo controls
+  const linkedinControls = useControls("LinkedIn Logo", {
+    position: {
+      value: { x: 3.63, y: 19.03, z: 29.5 },
+      step: 0.01,
+    },
+    rotation: {
+      value: { x: -4.8, y: 0, z: 3.08 },
+      step: 0.01,
+    },
+    innerPosition: {
+      value: { x: 0, y: 3, z: 6 },
+      step: 0.01,
+    },
+  });
+
+  // Google logo controls
+  const googleControls = useControls("Google Logo", {
+    position: {
+      value: { x: 5.7, y: 14.9, z: 30.17 },
+      step: 0.01,
+    },
+    rotation: {
+      value: { x: -4.67, y: 0.02, z: 3.081 },
+      step: 0.01,
+    },
+    innerPosition: {
+      value: { x: 0, y: 3, z: 6 },
+      step: 0.01,
+    },
+  });
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -64,11 +114,27 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         scale={0.545}
       />
       <group
-        position={[7.534, 12.875, 31.823]}
-        rotation={[-Math.PI / 2, 0, 3.081]}
+        position={[
+          githubControls.position.x,
+          githubControls.position.y,
+          githubControls.position.z,
+        ]}
+        rotation={[
+          githubControls.rotation.x,
+          githubControls.rotation.y,
+          githubControls.rotation.z,
+        ]}
         scale={0.652}
       >
-        <group position={[-0.055, 2.945, 6.336]} scale={28.364}>
+        {/* Github logo */}
+        <group
+          position={[
+            githubControls.innerPosition.x,
+            githubControls.innerPosition.y,
+            githubControls.innerPosition.z,
+          ]}
+          scale={28.364}
+        >
           <mesh
             castShadow
             receiveShadow
@@ -83,12 +149,28 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
           />
         </group>
       </group>
+      {/* Linkedin logo */}
       <group
-        position={[5.417, 9.155, 31.914]}
-        rotation={[-Math.PI / 2, 0, 3.081]}
+        position={[
+          linkedinControls.position.x,
+          linkedinControls.position.y,
+          linkedinControls.position.z,
+        ]}
+        rotation={[
+          linkedinControls.rotation.x,
+          linkedinControls.rotation.y,
+          linkedinControls.rotation.z,
+        ]}
         scale={0.652}
       >
-        <group position={[0, 3, 6]} scale={0.843}>
+        <group
+          position={[
+            linkedinControls.innerPosition.x,
+            linkedinControls.innerPosition.y,
+            linkedinControls.innerPosition.z,
+          ]}
+          scale={0.843}
+        >
           <mesh
             castShadow
             receiveShadow
@@ -121,12 +203,28 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
           />
         </group>
       </group>
+      {/* Google logo */}
       <group
-        position={[3.284, 12.847, 31.823]}
-        rotation={[-Math.PI / 2, 0, 3.081]}
+        position={[
+          googleControls.position.x,
+          googleControls.position.y,
+          googleControls.position.z,
+        ]}
+        rotation={[
+          googleControls.rotation.x,
+          googleControls.rotation.y,
+          googleControls.rotation.z,
+        ]}
         scale={0.652}
       >
-        <group position={[0, 3, 6]} scale={0.843}>
+        <group
+          position={[
+            googleControls.innerPosition.x,
+            googleControls.innerPosition.y,
+            googleControls.innerPosition.z,
+          ]}
+          scale={0.843}
+        >
           <mesh
             castShadow
             receiveShadow
