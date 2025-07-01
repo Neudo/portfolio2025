@@ -14,7 +14,7 @@ type GLTFResult = GLTF & {
 
 export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(
-    "/public/gltf/city_final.glb"
+    "/gltf/city_final.glb"
   ) as unknown as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -696,4 +696,4 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/public/gltf/city_final.glb");
+useGLTF.preload("/gltf/city_final.glb");
