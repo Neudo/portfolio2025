@@ -22,3 +22,26 @@
   --font-chillax: "Chillax", sans-serif;
   --font-chillax-bold: "Chillax-bold", sans-serif;
 }
+
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  touch-action: none;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: "Minecraft", Inter;
+}
+
+button {
+  font-family: inherit;
+}

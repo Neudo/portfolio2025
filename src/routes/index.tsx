@@ -12,12 +12,12 @@ export const Route = createFileRoute("/")({
 
 function App() {
   return (
-    <div className="App font-poppins overflow-hidden">
+    <>
       {/* <Header /> */}
       {/* <Hero /> */}
       <Experience />
       {/* <Contact /> */}
       {/* <Footer /> */}
-    </div>
+    </>
   );
 }

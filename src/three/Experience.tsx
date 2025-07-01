@@ -1,21 +1,13 @@
 import { StrictMode, Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
-  CameraControls,
   Environment,
   OrbitControls,
   PerspectiveCamera,
-  useHelper,
-  View,
 } from "@react-three/drei";
 import CityFinal from "./models/CityFinal";
 import * as THREE from "three";
 import { useControls } from "leva";
-
-const CameraHelper = ({ cameraRef }: { cameraRef: any }) => {
-  useHelper(cameraRef, THREE.CameraHelper);
-  return null;
-};
 
 const DebugCurve = ({ curve }: { curve: any }) => {
   const points = curve.getPoints(500);
@@ -54,9 +46,6 @@ const Scene = ({
   ]);
 
   useFrame(() => {
-    if (camera) {
-      console.log("Position ->", camera.current.position);
-    }
     if (camera && targetScrollProgress) {
       const newProgress = THREE.MathUtils.lerp(
         scrollProgress,
@@ -84,18 +73,15 @@ const Scene = ({
 
 // EXPERIENCE
 export default function Experience() {
-  const cameraLeft = useRef<any>();
-  const controlsLeft = useRef<any>();
-  const cameraRight = useRef<any>();
-  const controlsRight = useRef<any>();
+  const camera1 = useRef<any>(null);
+  const controls1 = useRef<any>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const targetScrollProgress = useRef(0);
 
   const controls = useControls({
     lerpFactor: { value: 0.02, min: 0, max: 1, step: 0.01 },
     scrollSpeed: { value: 0.002, min: 0, max: 0.01, step: 0.0001 },
   });
-
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const targetScrollProgress = useRef(0);
   const lerpFactor = controls.lerpFactor;
   const scrollSpeed = controls.scrollSpeed;
 
@@ -114,59 +100,23 @@ export default function Experience() {
 
   return (
     <>
-      <View
-        style={{
-          width: 750,
-          height: 750,
-          position: "absolute",
-          top: 10,
-          left: 10,
-          zIndex: 9,
-        }}
-      >
-        <Scene />
-        <PerspectiveCamera
-          makeDefault
-          fov={70}
-          position={[-46, 22, -15]}
-          ref={cameraLeft}
-        />
-        <OrbitControls ref={controlsLeft} camera={cameraLeft.current} />
-        <CameraHelper cameraRef={cameraRight} />
-      </View>
-
-      <View
-        style={{
-          width: 420,
-          height: 875,
-          position: "absolute",
-          top: 10,
-          right: 20,
-          zIndex: 9,
-        }}
-      >
+      <Canvas eventSource={document.getElementById("app")!}>
+        <ambientLight intensity={0.4} />
         <Scene
-          camera={cameraRight}
+          camera={camera1}
           scrollProgress={scrollProgress}
           setScrollProgress={setScrollProgress}
           targetScrollProgress={targetScrollProgress}
           lerpFactor={lerpFactor}
         />
         <PerspectiveCamera
+          ref={camera1}
           fov={70}
           position={[-46, 22, -15]}
           makeDefault
-          ref={cameraRight}
         />
-        <CameraControls ref={controlsRight} camera={cameraRight.current} />
-      </View>
-
-      <div className="h-[100vh] w-full overflow-hidden fixed top-0 left-0">
-        <Canvas eventSource={document.getElementById("app")!}>
-          <ambientLight intensity={0.4} />
-          <View.Port />
-        </Canvas>
-      </div>
+        <OrbitControls ref={controls1} camera={camera1.current} />
+      </Canvas>
     </>
   );
 }
