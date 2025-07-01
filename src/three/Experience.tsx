@@ -38,12 +38,12 @@ const Scene = ({
   const cameraCurve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-46, 22, -15),
     new THREE.Vector3(12, 7.4, -16), // About
-    new THREE.Vector3(30, 10, -16),
-    new THREE.Vector3(40, 10, -5),
-    new THREE.Vector3(40, 10, 15),
+    new THREE.Vector3(30, 7, -16),
+    new THREE.Vector3(33, 7, -5),
+    new THREE.Vector3(33, 7, 15),
     new THREE.Vector3(33, 10, 20), // skills
-    new THREE.Vector3(16, 10, 20), // Projects
-    new THREE.Vector3(-1, 10, 20), // Contact
+    new THREE.Vector3(16, 7, 20), // Projects
+    new THREE.Vector3(4, 7, 20), // Contact
   ]);
 
   const rotationTargets = [
@@ -52,24 +52,32 @@ const Scene = ({
       rotation: new THREE.Euler(-2.16, -1.046, -2.23),
     },
     {
-      progress: 0.13,
-      rotation: new THREE.Euler(0.0068, -0.15, 0.001),
+      progress: 0.09,
+      rotation: new THREE.Euler(0, 0, 0),
+    },
+    {
+      progress: 0.19,
+      rotation: new THREE.Euler(0, -1.5, 0),
     },
     {
       progress: 0.33,
-      rotation: new THREE.Euler(-2.87, -0.53, -3.0),
+      rotation: new THREE.Euler(0, -3.1, 0),
     },
     {
-      progress: 0.78,
-      rotation: new THREE.Euler(0.34, -1.42, 0.34),
+      progress: 0.5,
+      rotation: new THREE.Euler(0, -3.1, 0),
+    },
+    {
+      progress: 0.73,
+      rotation: new THREE.Euler(0, -1, 0),
     },
     {
       progress: 0.87,
-      rotation: new THREE.Euler(0.13, -0.39, 3.14),
+      rotation: new THREE.Euler(0, -3, 0),
     },
     {
       progress: 1,
-      rotation: new THREE.Euler(2.9, -0.12, 3.11),
+      rotation: new THREE.Euler(-0.55, -3, 0),
     },
   ];
 
