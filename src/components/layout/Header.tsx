@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="fixed w-full p-3 text-white">
+    <header className="w-full p-3 text-white">
       <ul className="flex items-center justify-center gap-x-2">
         <li>
           <a href="#">Home</a>
