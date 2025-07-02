@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Bounded from "@/components/Bounded";
 import { works } from "@/data/works";
+import ReactMarkdown from "react-markdown";
 
 export const Route = createFileRoute("/works/$worksId")({
   component: RouteComponent,
@@ -53,7 +54,6 @@ function RouteComponent() {
             </span>
           </div>
         </header>
-
         {work.preview && (
           <div className="mb-8">
             <img
@@ -63,17 +63,15 @@ function RouteComponent() {
             />
           </div>
         )}
-
         <div className="prose prose-invert max-w-none mb-8">
           <div className="text-gray-300 leading-relaxed whitespace-pre-line">
-            {work.content}
+            <ReactMarkdown>{work.content}</ReactMarkdown>
           </div>
         </div>
-
         <footer className="pt-8 border-t border-gray-700">
           <a
             href="/works"
-            className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors"
+            className="inline-flex items-center transition-colors"
           >
             ← Retour aux projets
           </a>

@@ -9,11 +9,11 @@ export const Route = createFileRoute("/works/")({
 function RouteComponent() {
   console.log(works);
   return (
-    <div className="mt-[90px] px-4">
+    <div className="container mt-[90px] px-4 mx-auto">
       <h1 className="text-3xl mb-10">Projets sélectionnés</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {works.map((work) => (
-          <WorkCard key={work.title} {...work} />
+        {works.map((work, index) => (
+          <WorkCard key={index} {...work} index={index} />
         ))}
       </div>
     </div>
