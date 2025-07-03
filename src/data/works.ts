@@ -2,10 +2,9 @@ export const works = [
   {
     url: "/works/negatif-plus",
     title: "Négatif +",
-    description:
-      "Britanniam unde odorandi per licentius discreta Paulus fortunis.",
+    description: "Refonte d'un e-commerce en Prestashop",
     preview: "/public/images/visuel-n+.jpg",
-    color: "#ff0033",
+    color: "#F84221",
     tags: ["Prestashop", "Front-end"],
     categories: ["Refonte de site web"],
     presentation:
@@ -15,10 +14,9 @@ export const works = [
   {
     url: "/works/alainbphoto",
     title: "AlainbPhoto",
-    description:
-      "Britanniam unde odorandi per licentius discreta Paulus fortunis latens missus sagax inusserat Magnentio missus consarcinando notarius.",
+    description: "Création d'un site pour un photographe indépendant.",
     preview: "/public/images/visuel-abphoto.jpg",
-    color: "#ffD033",
+    color: "#475149",
     tags: ["React", "Front-end", "Back-end", "Prismic", "Next.js"],
     categories: ["Création de site"],
     presentation:
@@ -29,9 +27,9 @@ export const works = [
     url: "/works/academie-des-technologies",
     title: "Académie des téchnologies",
     description:
-      "Modernizing retail with cutting-edge digital solutions, innovative user experience design, and seamless payment integration.",
+      "Refonte d'un site web pour un organisme dédié à la promotion et à la diffusion des innovations technologiques.",
     preview: "/public/images/visuel-adt.jpg",
-    color: "#4f46e5",
+    color: "#00183F",
     tags: ["PHP", "Wordpress", "Front-end", "Back-end"],
     categories: ["Refonte de site web"],
     presentation:
@@ -42,9 +40,9 @@ export const works = [
     url: "/works/sopic",
     title: "Sopic",
     description:
-      "Revolutionary mobile application combining intuitive UI/UX principles with advanced functionality for seamless user engagement.",
+      "Création d'un site pour une plateforme spécialisée dans la recherche d'appartements à l'achat ou à la location.",
     preview: "/public/images/visuel-sopic.jpg",
-    color: "#10b981",
+    color: "#F30732",
     tags: ["PHP", "Wordpress", "Front-end"],
     categories: ["Création de site web"],
     presentation:
@@ -55,9 +53,9 @@ export const works = [
     url: "/works/petit-forestier",
     title: "Petit Forestier",
     description:
-      "Data visualization platform transforming complex datasets into actionable insights through interactive charts and real-time monitoring.",
+      "Refonte d'un site web pour un acteur européen de référence dans la location de véhicules utilitaires frigorifiques.",
     preview: "/public/images/visuel-pf.jpg",
-    color: "#f59e0b",
+    color: "#08A652",
     tags: ["Drupal", "Front-end"],
     categories: ["Refonte de site web"],
     presentation:
@@ -68,9 +66,9 @@ export const works = [
     url: "/works/krug-app",
     title: "Krug App",
     description:
-      "Data visualization platform transforming complex datasets into actionable insights through interactive charts and real-time monitoring.",
+      "Création d'une app mobile pour une Maison de Champagne renommée pour son savoir-faire et son exigence.",
     preview: "/public/images/visuel-krug.jpg",
-    color: "#f59e0b",
+    color: "#5E0027",
     tags: ["React Native", "Front-end"],
     categories: ["Création d'une app mobile"],
     presentation:
