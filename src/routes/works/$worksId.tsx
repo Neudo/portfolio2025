@@ -70,9 +70,23 @@ function RouteComponent() {
           </div>
         )}
         <div className="prose prose-invert my-8 max-w-4xl mx-auto">
-          <div className="text-gray-300 leading-relaxed whitespace-pre-line">
-            <ReactMarkdown>{work.content}</ReactMarkdown>
-          </div>
+          {work.presentation && (
+            <div className="mb-6">
+              <h2 className="text-2xl mb-4">Présentation du projet</h2>
+              <p className="mb-6">{work.presentation}</p>
+            </div>
+          )}
+          {work.goal && (
+            <div className="mb-6">
+              <h2 className="text-2xl mb-4">Objectif</h2>
+              <p className="mb-6">{work.goal}</p>
+            </div>
+          )}
+          {work.content && (
+            <div className=" leading-relaxed whitespace-pre-line">
+              <ReactMarkdown>{work.content}</ReactMarkdown>
+            </div>
+          )}
         </div>
         <footer className="pt-8 border-t border-gray-700">
           <a

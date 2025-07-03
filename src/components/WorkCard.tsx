@@ -19,7 +19,7 @@ export default function WorkCard({
   return (
     <div className={`relative w-full ${index === 2 ? "md:col-span-2" : ""}`}>
       <a href={url}>
-        <div className="img-wrapper">
+        <div className="img-wrapper overlay">
           <img
             src={preview}
             alt="#"

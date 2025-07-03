@@ -21,7 +21,7 @@
   --font-poppins: "Poppins", sans-serif;
   --font-chillax: "Chillax", sans-serif;
   --font-chillax-bold: "Chillax-bold", sans-serif;
-  --background-color: #162d1a;
+  --background-color: #f2ece4;
 }
 
 html,
@@ -45,7 +45,6 @@ button {
 
 body {
   background-color: var(--background-color);
-  color: white;
 }
 
 h1,
