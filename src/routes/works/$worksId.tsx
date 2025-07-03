@@ -32,38 +32,44 @@ function RouteComponent() {
 
   return (
     <Bounded>
-      <article className="max-w-4xl mx-auto px-4 py-8">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">{work.title}</h1>
-          <p className="text-xl text-gray-300 mb-6">{work.description}</p>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {work.tags.map((tag: string, index: number) => (
-              <span
-                key={index}
-                className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <div className="mb-6">
-            <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">
-              {work.categories[0]}
-            </span>
-          </div>
-        </header>
+      <article className="mx-auto px-4 py-8">
         {work.preview && (
-          <div className="mb-8">
-            <img
-              src={work.preview}
-              alt={work.title}
-              className="w-full h-64 object-cover rounded-lg"
-            />
+          <div className="relative mb-4">
+            <div className="overlay w-full h-[65vh]">
+              <img
+                src={work.preview}
+                alt={work.title}
+                className="w-full object-cover rounded-lg h-full"
+              />
+              <header className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-20">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                  {work.title}
+                </h1>
+                <p className="text-lg text-gray-300 mb-6 text-center px-4 max-w-3xl">
+                  {work.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-2 md:mb-6">
+                  {work.tags.map((tag: string, index: number) => (
+                    <span
+                      key={index}
+                      className="bg-green-900  px-3 py-1 rounded-full text-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="">
+                  <span className="bg-blue-500 text-black px-3 py-1 rounded-full text-sm">
+                    {work.categories[0]}
+                  </span>
+                </div>
+              </header>
+            </div>
           </div>
         )}
-        <div className="prose prose-invert max-w-none mb-8">
+        <div className="prose prose-invert my-8 max-w-4xl mx-auto">
           <div className="text-gray-300 leading-relaxed whitespace-pre-line">
             <ReactMarkdown>{work.content}</ReactMarkdown>
           </div>
