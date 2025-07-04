@@ -12,7 +12,7 @@ export default function Experience() {
   const targetScrollProgress = useRef(0);
 
   const lerpFactor = 0.02;
-  const scrollSpeed = 0.0009;
+  const scrollSpeed = 0.0019;
   const isSwiping = useRef(false);
 
   // Modal
