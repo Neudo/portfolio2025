@@ -31,7 +31,7 @@ export default function Scene({
   lerpFactor?: any;
 }) {
   const cameraCurve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(-46, 22, -15),
+    new THREE.Vector3(-27, 17, -15),
     new THREE.Vector3(12, 7.4, -16), // About
     new THREE.Vector3(30, 7, -16),
     new THREE.Vector3(33, 7, -5),
@@ -44,7 +44,7 @@ export default function Scene({
   const rotationTargets = [
     {
       progress: 0,
-      rotation: new THREE.Euler(-2.16, -1.046, -2.23),
+      rotation: new THREE.Euler(-2.36, -1, -2.1),
     },
     {
       progress: 0.09,

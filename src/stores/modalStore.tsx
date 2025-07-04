@@ -1,11 +1,11 @@
+import type { JSX } from "react";
 import { create } from "zustand";
 
 interface ModalState {
   isModalOpen: boolean;
   modalTitle: string;
   modalContent: any;
-  modalType: string;
-  openModal: (title: string, content: JSX.Element, type: string) => void;
+  openModal: (title: string, content: JSX.Element) => void;
   closeModal: () => void;
 }
 
@@ -13,14 +13,12 @@ export const useModalStore = create<ModalState>((set) => ({
   isModalOpen: false,
   modalTitle: "",
   modalContent: "",
-  modalType: "",
 
-  openModal: (title: string, content: string, type: string) =>
+  openModal: (title: string, content: JSX.Element) =>
     set({
       isModalOpen: true,
       modalTitle: title,
       modalContent: content,
-      modalType: type,
     }),
 
   closeModal: () =>
@@ -28,6 +26,5 @@ export const useModalStore = create<ModalState>((set) => ({
       isModalOpen: false,
       modalTitle: "",
       modalContent: "",
-      modalType: "",
     }),
 }));

@@ -1,4 +1,4 @@
-import { Outlines, useCursor, useGLTF } from "@react-three/drei";
+import { useCursor, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { type JSX, useRef, useState } from "react";
 import type { GLTF } from "three-stdlib";
@@ -94,11 +94,11 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   });
   const handleClick = (elementId: string) => {
     if (elementId === "about") {
-      openModal("À propos de moi", <About />, elementId);
+      openModal("À propos de moi", <About />);
     } else if (elementId === "skills") {
-      openModal("Domaine d'expertises", <Skills />, elementId);
+      openModal("Domaine d'expertises", <Skills />);
     } else {
-      openModal("Projets", <Projects />, elementId);
+      openModal("Projets", <Projects />);
     }
   };
 

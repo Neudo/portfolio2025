@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Scene from "./Scene";
-import DebugScene from "./DebugScene";
 import { useModalStore } from "@/stores/modalStore";
 
 // EXPERIENCE
@@ -13,7 +12,7 @@ export default function Experience() {
   const targetScrollProgress = useRef(0);
 
   const lerpFactor = 0.02;
-  const scrollSpeed = 0.002;
+  const scrollSpeed = 0.0009;
   const isSwiping = useRef(false);
 
   // Modal
@@ -60,20 +59,15 @@ export default function Experience() {
     <>
       <Canvas eventSource={document.getElementById("root")!}>
         <ambientLight intensity={0.4} />
-        {/* <Scene
+        <Scene
           camera={camera1}
           scrollProgress={scrollProgress}
           setScrollProgress={setScrollProgress}
           targetScrollProgress={targetScrollProgress}
           lerpFactor={lerpFactor}
-        /> */}
-        <DebugScene camera={camera1} />
-        <PerspectiveCamera
-          ref={camera1}
-          fov={70}
-          position={[-46, 22, -15]}
-          makeDefault
         />
+        {/* <DebugScene camera={camera1} /> */}
+        <PerspectiveCamera ref={camera1} fov={70} makeDefault />
         <OrbitControls ref={controls1} camera={camera1.current} />
       </Canvas>
     </>

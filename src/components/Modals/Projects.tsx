@@ -1,4 +1,3 @@
-import React from "react";
 import { works } from "@/data/works";
 import WorkCard from "../WorkCard";
 

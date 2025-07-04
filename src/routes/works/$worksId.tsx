@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Bounded from "@/components/Bounded";
 import { works } from "@/data/works";
-import ReactMarkdown from "react-markdown";
 
 export const Route = createFileRoute("/works/$worksId")({
   component: RouteComponent,
@@ -80,11 +79,6 @@ function RouteComponent() {
             <div className="mb-6">
               <h2 className="text-2xl mb-4">Objectif</h2>
               <p className="mb-6">{work.goal}</p>
-            </div>
-          )}
-          {work.content && (
-            <div className=" leading-relaxed whitespace-pre-line">
-              <ReactMarkdown>{work.content}</ReactMarkdown>
             </div>
           )}
         </div>

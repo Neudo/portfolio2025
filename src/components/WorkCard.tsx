@@ -3,17 +3,15 @@ type Props = {
   description: string;
   preview: string;
   color: string;
-  tags: string[];
   url: string;
   index: number;
-  style: string;
+  style?: string;
 };
 export default function WorkCard({
   title,
   description,
   preview,
   color,
-  tags,
   url,
   index,
   style,
