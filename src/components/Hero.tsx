@@ -17,7 +17,7 @@ export default function Hero() {
             </p>
             <div className="flex flex-wrap gap-x-2">
               <Cta text="Télécharger mon CV" download />
-              <Cta text="À propos de moi" href="#about" variant="outline" />
+              <Cta text="En savoir plus" variant="outline" />
             </div>
           </div>
           <div>

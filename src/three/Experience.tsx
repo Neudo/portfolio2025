@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
-import { useControls } from "leva";
 import Scene from "./Scene";
 import DebugScene from "./DebugScene";
+import { useModalStore } from "@/stores/modalStore";
 
 // EXPERIENCE
 export default function Experience() {
@@ -12,21 +12,23 @@ export default function Experience() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const targetScrollProgress = useRef(0);
 
-  const controls = useControls({
-    lerpFactor: { value: 0.02, min: 0, max: 1, step: 0.01 },
-    scrollSpeed: { value: 0.002, min: 0, max: 0.01, step: 0.0001 },
-  });
-  const lerpFactor = controls.lerpFactor;
-  const scrollSpeed = controls.scrollSpeed;
+  const lerpFactor = 0.02;
+  const scrollSpeed = 0.002;
   const isSwiping = useRef(false);
+
+  // Modal
+  const { isModalOpen } = useModalStore();
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      if (isModalOpen) return;
+
       targetScrollProgress.current =
         targetScrollProgress.current + Math.sign(e.deltaY) * scrollSpeed;
     };
 
     const handlePointerDown = () => {
+      if (isModalOpen) return;
       isSwiping.current = true;
     };
 
@@ -52,20 +54,20 @@ export default function Experience() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <>
-      <Canvas eventSource={document.getElementById("app")!}>
+      <Canvas eventSource={document.getElementById("root")!}>
         <ambientLight intensity={0.4} />
-        <Scene
+        {/* <Scene
           camera={camera1}
           scrollProgress={scrollProgress}
           setScrollProgress={setScrollProgress}
           targetScrollProgress={targetScrollProgress}
           lerpFactor={lerpFactor}
-        />
-        {/* <DebugScene camera={camera1} /> */}
+        /> */}
+        <DebugScene camera={camera1} />
         <PerspectiveCamera
           ref={camera1}
           fov={70}

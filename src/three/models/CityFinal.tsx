@@ -1,8 +1,12 @@
-import { useGLTF } from "@react-three/drei";
+import { Outlines, useCursor, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { type JSX } from "react";
+import { type JSX, useRef, useState } from "react";
 import type { GLTF } from "three-stdlib";
-import { useControls } from "leva";
+import { useModalStore } from "@/stores/modalStore";
+import About from "@/components/Modals/About";
+import Skills from "@/components/Modals/Skills";
+import Projects from "@/components/Modals/Projects";
+import { useFrame } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,65 +22,109 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
     "/gltf/city_final.glb"
   ) as unknown as GLTFResult;
 
-  // GitHub logo controls
-  const githubControls = useControls("GitHub Logo", {
-    position: {
-      value: { x: 6.49, y: 13.3, z: 28.65 },
-      step: 0.01,
-    },
-    rotation: {
-      value: { x: -4.8, y: 0, z: 3.081 },
-      step: 0.01,
-    },
-    innerPosition: {
-      value: { x: -2.06, y: 0.94, z: -2.66 },
-      step: 0.01,
-    },
-  });
+  const { openModal } = useModalStore();
+  const [githubHovered, setGithubHovered] = useState(false);
+  const [googleHovered, setGoogleHovered] = useState(false);
+  const [linkedinHovered, setLinkedinHovered] = useState(false);
 
-  // LinkedIn logo controls
-  const linkedinControls = useControls("LinkedIn Logo", {
-    position: {
-      value: { x: 3.63, y: 19.03, z: 29.5 },
-      step: 0.01,
-    },
-    rotation: {
-      value: { x: -4.8, y: 0, z: 3.08 },
-      step: 0.01,
-    },
-    innerPosition: {
-      value: { x: 0, y: 3, z: 6 },
-      step: 0.01,
-    },
-  });
+  const githubRef = useRef<any>(null);
+  const googleRef = useRef<any>(null);
+  const linkedinRef = useRef<any>(null);
 
-  // Google logo controls
-  const googleControls = useControls("Google Logo", {
-    position: {
-      value: { x: 5.7, y: 14.9, z: 30.17 },
-      step: 0.01,
-    },
-    rotation: {
-      value: { x: -4.67, y: 0.02, z: 3.081 },
-      step: 0.01,
-    },
-    innerPosition: {
-      value: { x: 0, y: 3, z: 6 },
-      step: 0.01,
-    },
+  const targetScale = useRef(28.364); // Start with normal scale
+  const currentScale = useRef(28.364);
+
+  const googleTargetScale = useRef(0.843);
+  const googleCurrentScale = useRef(0.843);
+
+  const linkedinTargetScale = useRef(0.843);
+  const linkedinCurrentScale = useRef(0.843);
+
+  useCursor(githubHovered);
+  useCursor(googleHovered);
+  useCursor(linkedinHovered);
+
+  // Update target scale when hover state changes
+  if (githubHovered && targetScale.current !== 30) {
+    targetScale.current = 30; // Hover scale
+  } else if (!githubHovered && targetScale.current !== 28.364) {
+    targetScale.current = 28.364; // Normal scale
+  }
+
+  if (googleHovered && googleTargetScale.current !== 0.883) {
+    googleTargetScale.current = 0.883;
+  } else if (!googleHovered && googleTargetScale.current !== 0.843) {
+    googleTargetScale.current = 0.843;
+  }
+
+  if (linkedinHovered && linkedinTargetScale.current !== 0.883) {
+    linkedinTargetScale.current = 0.883;
+  } else if (!linkedinHovered && linkedinTargetScale.current !== 0.843) {
+    linkedinTargetScale.current = 0.843;
+  }
+
+  useFrame(() => {
+    if (githubRef.current) {
+      // Always animate, regardless of hover state
+      currentScale.current = THREE.MathUtils.lerp(
+        currentScale.current,
+        targetScale.current,
+        0.08 // Slightly slower for smoother animation
+      );
+      githubRef.current.scale.setScalar(currentScale.current);
+    }
+    if (googleRef.current) {
+      googleCurrentScale.current = THREE.MathUtils.lerp(
+        googleCurrentScale.current,
+        googleTargetScale.current,
+        0.08
+      );
+      googleRef.current.scale.setScalar(googleCurrentScale.current);
+    }
+    if (linkedinRef.current) {
+      linkedinCurrentScale.current = THREE.MathUtils.lerp(
+        linkedinCurrentScale.current,
+        linkedinTargetScale.current,
+        0.08
+      );
+      linkedinRef.current.scale.setScalar(linkedinCurrentScale.current);
+    }
   });
+  const handleClick = (elementId: string) => {
+    if (elementId === "about") {
+      openModal("À propos de moi", <About />, elementId);
+    } else if (elementId === "skills") {
+      openModal("Domaine d'expertises", <Skills />, elementId);
+    } else {
+      openModal("Projets", <Projects />, elementId);
+    }
+  };
+
+  const openLink = (url: string) => {
+    window.open(url, "_blank");
+  };
+
+  // Logo positions and rotations (fixed values)
+  const githubControls = {
+    position: { x: 6.49, y: 13.3, z: 28.65 },
+    rotation: { x: -4.8, y: 0, z: 3.081 },
+    innerPosition: { x: -2.06, y: 0.94, z: -2.66 },
+  };
+
+  const linkedinControls = {
+    position: { x: 3.63, y: 19.03, z: 29.5 },
+    rotation: { x: -4.8, y: 0, z: 3.08 },
+    innerPosition: { x: 0, y: 3, z: 6 },
+  };
+
+  const googleControls = {
+    position: { x: 5.7, y: 14.9, z: 30.17 },
+    rotation: { x: -4.67, y: 0.02, z: 3.081 },
+    innerPosition: { x: 0, y: 3, z: 6 },
+  };
 
   return (
     <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Texte.geometry}
-        material={materials.Matériau}
-        position={[10.582, 10.408, -31.74]}
-        rotation={[1.606, 0, 0]}
-        scale={1.303}
-      />
       <mesh
         castShadow
         receiveShadow
@@ -85,6 +133,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         position={[10.582, 10.408, -31.74]}
         rotation={[1.606, 0, 0]}
         scale={1.303}
+        onClick={() => handleClick("about")}
       />
       <mesh
         castShadow
@@ -94,6 +143,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         position={[41.192, 14.09, 13.906]}
         rotation={[Math.PI / 2, 0, Math.PI / 2]}
         scale={0.684}
+        onClick={() => handleClick("skills")}
       />
       <mesh
         castShadow
@@ -103,6 +153,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         position={[19.345, 12.171, 33.273]}
         rotation={[Math.PI / 2, 0, Math.PI]}
         scale={0.767}
+        onClick={() => handleClick("projects")}
       />
       <mesh
         castShadow
@@ -128,28 +179,32 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
       >
         {/* Github logo */}
         <group
+          ref={githubRef}
           position={[
             githubControls.innerPosition.x,
             githubControls.innerPosition.y,
             githubControls.innerPosition.z,
           ]}
           scale={28.364}
+          onClick={() => openLink("https://github.com/Neudo")}
+          onPointerOver={() => setGithubHovered(true)}
+          onPointerOut={() => setGithubHovered(false)}
         >
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.Object_4.geometry}
             material={materials.glossy_putih}
-          />
+          ></mesh>
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.Object_5.geometry}
             material={materials.github}
-          />
+          ></mesh>
         </group>
       </group>
-      {/* Linkedin logo */}
+      {/* Google logo */}
       <group
         position={[
           linkedinControls.position.x,
@@ -170,6 +225,10 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
             linkedinControls.innerPosition.z,
           ]}
           scale={0.843}
+          ref={googleRef}
+          onClick={() => openLink("mailto:quentin.bassalair@gmail.com")}
+          onPointerOver={() => setGoogleHovered(true)}
+          onPointerLeave={() => setGoogleHovered(false)}
         >
           <mesh
             castShadow
@@ -203,7 +262,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
           />
         </group>
       </group>
-      {/* Google logo */}
+      {/* Linkedin logo */}
       <group
         position={[
           googleControls.position.x,
@@ -216,6 +275,11 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
           googleControls.rotation.z,
         ]}
         scale={0.652}
+        onClick={() =>
+          openLink("https://www.linkedin.com/in/quentin-bassalair-05556b190/")
+        }
+        // onPointerOver={() => setHovered(true)}
+        // onPointerOut={() => setHovered(false)}
       >
         <group
           position={[
@@ -224,6 +288,9 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
             googleControls.innerPosition.z,
           ]}
           scale={0.843}
+          ref={linkedinRef}
+          onPointerOver={() => setLinkedinHovered(true)}
+          onPointerLeave={() => setLinkedinHovered(false)}
         >
           <mesh
             castShadow

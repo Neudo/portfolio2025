@@ -110,8 +110,8 @@ export default function Scene({
       const targetRotation = getLerpedRotation(newProgress);
       camera.current.rotation.copy(targetRotation);
 
-      console.log("Rotation->>>>", camera.current.rotation);
-      console.log("Progress ----->", newProgress);
+      // console.log("Rotation->>>>", camera.current.rotation);
+      // console.log("Progress ----->", newProgress);
     }
   });
 
