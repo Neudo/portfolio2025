@@ -26,6 +26,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   const [githubHovered, setGithubHovered] = useState(false);
   const [googleHovered, setGoogleHovered] = useState(false);
   const [linkedinHovered, setLinkedinHovered] = useState(false);
+  const [globalHovered, setGlobalHovered] = useState(false);
 
   const githubRef = useRef<any>(null);
   const googleRef = useRef<any>(null);
@@ -43,6 +44,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   useCursor(githubHovered);
   useCursor(googleHovered);
   useCursor(linkedinHovered);
+  useCursor(globalHovered);
 
   // Update target scale when hover state changes
   if (githubHovered && targetScale.current !== 30) {
@@ -130,21 +132,37 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         receiveShadow
         geometry={nodes.Texte001.geometry}
         material={materials.Matériau}
-        position={[10.582, 10.408, -31.74]}
+        position={[10.582, 10.408, -30.74]}
         rotation={[1.606, 0, 0]}
         scale={1.303}
-        onClick={() => handleClick("about")}
       />
+      <mesh
+        position={[13.5, 10.9, -31.6]}
+        onClick={() => handleClick("about")}
+        onPointerEnter={() => setGlobalHovered(true)}
+        onPointerLeave={() => setGlobalHovered(false)}
+      >
+        <boxGeometry args={[7.6, 2, 1]} />
+        <meshStandardMaterial color="#D2AC9F" />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Texte002.geometry}
         material={materials.Matériau}
-        position={[41.192, 14.09, 13.906]}
+        position={[41.192, 14.015, 13.906]}
         rotation={[Math.PI / 2, 0, Math.PI / 2]}
         scale={0.684}
-        onClick={() => handleClick("skills")}
       />
+      <mesh
+        position={[41.75, 14.2, 16.2]}
+        onClick={() => handleClick("skills")}
+        onPointerEnter={() => setGlobalHovered(true)}
+        onPointerLeave={() => setGlobalHovered(false)}
+      >
+        <boxGeometry args={[1, 1, 5.5]} />
+        <meshStandardMaterial color="#100709" />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
@@ -153,8 +171,16 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         position={[19.345, 12.171, 33.273]}
         rotation={[Math.PI / 2, 0, Math.PI]}
         scale={0.767}
-        onClick={() => handleClick("projects")}
       />
+      <mesh
+        position={[18, 12.5, 33.3]}
+        onClick={() => handleClick("projects")}
+        onPointerEnter={() => setGlobalHovered(true)}
+        onPointerLeave={() => setGlobalHovered(false)}
+      >
+        <boxGeometry args={[3.7, 1, 0.1]} />
+        <meshStandardMaterial color="#BEC7DA" />
+      </mesh>
       <mesh
         castShadow
         receiveShadow
