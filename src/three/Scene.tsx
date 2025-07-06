@@ -109,9 +109,6 @@ export default function Scene({
 
       const targetRotation = getLerpedRotation(newProgress);
       camera.current.rotation.copy(targetRotation);
-
-      // console.log("Rotation->>>>", camera.current.rotation);
-      // console.log("Progress ----->", newProgress);
     }
   });
 
@@ -120,7 +117,7 @@ export default function Scene({
       <DebugCurve curve={cameraCurve} />
       <Environment preset="sunset" />
       <Suspense fallback={null}>
-        <CityFinal />
+        <CityFinal currentProgress={scrollProgress} />
       </Suspense>
     </>
   );

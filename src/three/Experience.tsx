@@ -22,8 +22,9 @@ export default function Experience() {
     const handleWheel = (e: WheelEvent) => {
       if (isModalOpen) return;
 
-      targetScrollProgress.current =
-        targetScrollProgress.current + Math.sign(e.deltaY) * scrollSpeed;
+      if (scrollProgress <= 1) {
+        targetScrollProgress.current += Math.sign(e.deltaY) * scrollSpeed;
+      }
     };
 
     const handlePointerDown = () => {
@@ -33,8 +34,7 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
-      targetScrollProgress.current =
-        targetScrollProgress.current +
+      targetScrollProgress.current +=
         Math.sign(e.movementY) * scrollSpeed * 0.2;
     };
 
@@ -43,9 +43,9 @@ export default function Experience() {
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
-    // window.addEventListener("pointerdown", handlePointerDown);
-    // window.addEventListener("pointermove", handlePointerMove);
-    // window.addEventListener("pointerup", handlePointerUp);
+    window.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointerup", handlePointerUp);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);

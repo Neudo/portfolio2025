@@ -12,7 +12,7 @@ export default function Modal() {
         onClick={closeModal}
         className="modal-overlay absolute top-0 left-0 w-full h-full bg-slate-300/20 z-50"
       ></div>
-      <div className="modal-content absolute top-0 left-0 z-50 w-full md:w-1/2 max-w-[550px] h-screen bg-white p-4">
+      <div className="modal-content absolute overflow-scroll top-0 left-0 z-50 w-full md:w-1/2 max-w-[550px] h-screen bg-white p-4">
         <button
           className="modal-content-close-button ml-auto block cursor-pointer"
           onClick={closeModal}

@@ -1,4 +1,4 @@
-import { useCursor, useGLTF } from "@react-three/drei";
+import { Billboard, useCursor, useGLTF, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { type JSX, useRef, useState } from "react";
 import type { GLTF } from "three-stdlib";
@@ -17,7 +17,13 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
+export default function CityFinal({
+  currentProgress,
+}: {
+  currentProgress: number;
+}) {
+  console.log("--->", currentProgress);
+
   const { nodes, materials } = useGLTF(
     "/gltf/city_final.glb"
   ) as unknown as GLTFResult;
@@ -40,11 +46,30 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
 
   const linkedinTargetScale = useRef(0.843);
   const linkedinCurrentScale = useRef(0.843);
+  let panelColor = "#D2AC9F";
+  let panelSkills = "#100709";
+  let panelWorks = "#BEC7DA";
 
   useCursor(githubHovered);
   useCursor(googleHovered);
   useCursor(linkedinHovered);
   useCursor(globalHovered);
+
+  // colors panels
+
+  // about
+  if (currentProgress >= 0.12 && currentProgress < 0.14) {
+    panelColor = "#1A7304";
+  }
+
+  // skills
+  if (currentProgress >= 0.69 && currentProgress < 0.75) {
+    panelSkills = "#1A7304";
+  }
+
+  if (currentProgress >= 0.84 && currentProgress < 0.9) {
+    panelWorks = "#1A7304";
+  }
 
   // Update target scale when hover state changes
   if (githubHovered && targetScale.current !== 30) {
@@ -126,7 +151,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
   };
 
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <mesh
         castShadow
         receiveShadow
@@ -136,6 +161,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         rotation={[1.606, 0, 0]}
         scale={1.303}
       />
+
       <mesh
         position={[13.5, 10.9, -31.6]}
         onClick={() => handleClick("about")}
@@ -143,7 +169,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         onPointerLeave={() => setGlobalHovered(false)}
       >
         <boxGeometry args={[7.6, 2, 1]} />
-        <meshStandardMaterial color="#D2AC9F" />
+        <meshStandardMaterial color={panelColor} />
       </mesh>
       <mesh
         castShadow
@@ -161,7 +187,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         onPointerLeave={() => setGlobalHovered(false)}
       >
         <boxGeometry args={[1, 1, 5.5]} />
-        <meshStandardMaterial color="#100709" />
+        <meshStandardMaterial color={panelSkills} />
       </mesh>
       <mesh
         castShadow
@@ -179,7 +205,7 @@ export default function CityFinal(props: JSX.IntrinsicElements["group"]) {
         onPointerLeave={() => setGlobalHovered(false)}
       >
         <boxGeometry args={[3.7, 1, 0.1]} />
-        <meshStandardMaterial color="#BEC7DA" />
+        <meshStandardMaterial color={panelWorks} />
       </mesh>
       <mesh
         castShadow
