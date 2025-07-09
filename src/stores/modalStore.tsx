@@ -12,6 +12,8 @@ interface ModalState {
   setScrollProgress: (progress: number) => void;
   setTargetScrollProgress: (progress: number) => void;
   resetScrollProgress: () => void;
+  experienceStarted: boolean;
+  setExperienceStarted: (started: boolean) => void;
 }
 
 export const useModalStore = create<ModalState>((set) => ({
@@ -20,6 +22,7 @@ export const useModalStore = create<ModalState>((set) => ({
   modalContent: "",
   scrollProgress: 0,
   targetScrollProgress: 0,
+  experienceStarted: false,
 
   openModal: (title: string, content: JSX.Element) =>
     set({
@@ -35,12 +38,14 @@ export const useModalStore = create<ModalState>((set) => ({
       modalContent: "",
     }),
 
-  setScrollProgress: (progress: number) =>
-    set({ scrollProgress: progress }),
+  setScrollProgress: (progress: number) => set({ scrollProgress: progress }),
 
   setTargetScrollProgress: (progress: number) =>
     set({ targetScrollProgress: progress }),
 
   resetScrollProgress: () =>
     set({ scrollProgress: 0, targetScrollProgress: 0 }),
+
+  setExperienceStarted: (started: boolean) =>
+    set({ experienceStarted: started }),
 }));

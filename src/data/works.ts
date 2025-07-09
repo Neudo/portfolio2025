@@ -27,7 +27,7 @@ export const works = [
     url: "/works/vitalisite",
     title: "Vitalisite",
     description: "Site + thème Wordpress pour professionelles de santé",
-    preview: "/public/images/visuel-abphoto.jpg",
+    preview: "/public/images/visuel-vitalisite.jpg",
     color: "#03055E",
     tags: ["Next.js", "WordPress", "Front-end", "Back-end"],
     categories: ["Création de site web", "Création d'un thème WordPress"],
