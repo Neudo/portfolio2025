@@ -22,8 +22,6 @@ export default function CityFinal({
 }: {
   currentProgress: number;
 }) {
-  console.log("--->", currentProgress);
-
   const { nodes, materials } = useGLTF(
     "/gltf/city_final.glb"
   ) as unknown as GLTFResult;
@@ -63,7 +61,7 @@ export default function CityFinal({
   // colors panels
 
   // about
-  if (currentProgress >= 0.12 && currentProgress < 0.14) {
+  if (currentProgress >= 0.117 && currentProgress < 0.13) {
     panelColor = "#06923E";
   }
 
@@ -72,7 +70,7 @@ export default function CityFinal({
     panelSkills = "#1A7304";
   }
 
-  if (currentProgress >= 0.84 && currentProgress < 0.9) {
+  if (currentProgress >= 0.86 && currentProgress < 0.9) {
     panelWorks = "#1A7304";
   }
 
@@ -96,7 +94,7 @@ export default function CityFinal({
   }
 
   useFrame(() => {
-    if (currentProgress >= 0.12 && currentProgress < 0.14) {
+    if (currentProgress >= 0.117 && currentProgress < 0.13) {
       currentTextScale.current = THREE.MathUtils.lerp(
         currentTextScale.current,
         targetTextScale.current,

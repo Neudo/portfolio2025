@@ -23,7 +23,6 @@ export default function Scene({
   scrollProgress,
   targetScrollProgress,
   lerpFactor,
-  scrollSpeed,
 }: {
   camera?: any;
   setScrollProgress?: any;
@@ -106,10 +105,26 @@ export default function Scene({
       setScrollProgress(newProgress);
 
       const point = cameraCurve.getPoint(newProgress);
-      camera.current.position.copy(point);
+      if (newProgress >= 0.95 && newProgress <= 0.9998) {
+        console.log(camera.current.position, "is pos");
+        console.log(camera.current.rotation, "is rotation");
+      }
+      if (newProgress <= 0.9999) {
+        camera.current.position.copy(point);
+      } else {
+        camera.current.position.x = 4;
+        camera.current.position.y = 7;
+        camera.current.position.z = 20;
+      }
 
       const targetRotation = getLerpedRotation(newProgress);
-      camera.current.rotation.copy(targetRotation);
+      if (newProgress <= 0.9999) {
+        camera.current.rotation.copy(targetRotation);
+      } else {
+        camera.current.rotation.x = -0.54;
+        camera.current.rotation.y = -3;
+        camera.current.rotation.z = 0;
+      }
     }
   });
 

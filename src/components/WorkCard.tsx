@@ -19,8 +19,6 @@ export default function WorkCard({
   style,
   tags,
 }: Props) {
-  console.log(tags);
-
   return (
     <div
       className={`relative w-full overflow-hidden mb-8 md:mb-0 group ${index === 2 ? "" : ""}`}
