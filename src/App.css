@@ -76,3 +76,15 @@ span {
 .modal-body p {
   margin-bottom: 1rem;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.modal-enter {
+  transform: translate(0%, 0);
+}
+
+.modal-exit {
+  transform: translate(-100%, 0);
+}

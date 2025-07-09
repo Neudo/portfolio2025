@@ -23,6 +23,7 @@ export default function Scene({
   scrollProgress,
   targetScrollProgress,
   lerpFactor,
+  scrollSpeed,
 }: {
   camera?: any;
   setScrollProgress?: any;

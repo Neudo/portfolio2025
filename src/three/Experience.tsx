@@ -10,15 +10,20 @@ export default function Experience() {
   const controls1 = useRef<any>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const targetScrollProgress = useRef(0);
+  const scrollSpeed = 0.0019;
 
   const lerpFactor = 0.02;
-  const scrollSpeed = 0.0019;
+
   const isSwiping = useRef(false);
 
   // Modal
   const { isModalOpen } = useModalStore();
 
   useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("no-scroll");
+    }
+
     const handleWheel = (e: WheelEvent) => {
       if (isModalOpen) return;
 
@@ -53,7 +58,7 @@ export default function Experience() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [isModalOpen]);
+  }, [isModalOpen, scrollProgress]);
 
   return (
     <>

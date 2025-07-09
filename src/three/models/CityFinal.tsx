@@ -38,9 +38,13 @@ export default function CityFinal({
   const githubRef = useRef<any>(null);
   const googleRef = useRef<any>(null);
   const linkedinRef = useRef<any>(null);
+  const aboutRef = useRef<any>(null);
 
   const targetScale = useRef(28.364); // Start with normal scale
   const currentScale = useRef(28.364);
+
+  const targetTextScale = useRef(1.4);
+  const currentTextScale = useRef(1.3);
 
   const googleTargetScale = useRef(0.843);
   const googleCurrentScale = useRef(0.843);
@@ -60,7 +64,7 @@ export default function CityFinal({
 
   // about
   if (currentProgress >= 0.12 && currentProgress < 0.14) {
-    panelColor = "#1A7304";
+    panelColor = "#06923E";
   }
 
   // skills
@@ -92,6 +96,22 @@ export default function CityFinal({
   }
 
   useFrame(() => {
+    if (currentProgress >= 0.12 && currentProgress < 0.14) {
+      currentTextScale.current = THREE.MathUtils.lerp(
+        currentTextScale.current,
+        targetTextScale.current,
+        0.08 // Slightly slower for smoother animation
+      );
+      aboutRef.current.scale.setScalar(currentTextScale.current);
+    } else {
+      currentTextScale.current = THREE.MathUtils.lerp(
+        currentTextScale.current,
+        1.3,
+        0.08 // Slightly slower for smoother animation
+      );
+      aboutRef.current.scale.setScalar(currentTextScale.current);
+    }
+
     if (githubRef.current) {
       // Always animate, regardless of hover state
       currentScale.current = THREE.MathUtils.lerp(
@@ -162,9 +182,10 @@ export default function CityFinal({
         receiveShadow
         geometry={nodes.Texte001.geometry}
         material={materials.Matériau}
-        position={[10.582, 10.408, -30.74]}
+        position={[10.2, 10.408, -30.74]}
         rotation={[1.606, 0, 0]}
-        scale={1.303}
+        scale={1.3}
+        ref={aboutRef}
       />
 
       <mesh
