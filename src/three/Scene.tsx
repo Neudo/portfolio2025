@@ -5,19 +5,6 @@ import CityFinal from "./models/CityFinal";
 import { Environment } from "@react-three/drei";
 import { useModalStore } from "../stores/modalStore";
 
-const DebugCurve = ({ curve }: { curve: any }) => {
-  const points = curve.getPoints(500);
-  const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-  return (
-    <primitive
-      object={
-        new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "red" }))
-      }
-    />
-  );
-};
-
 export default function Scene({
   camera,
   lerpFactor,
@@ -25,7 +12,8 @@ export default function Scene({
   camera?: any;
   lerpFactor?: any;
 }) {
-  const { scrollProgress, targetScrollProgress, setScrollProgress } = useModalStore();
+  const { scrollProgress, targetScrollProgress, setScrollProgress } =
+    useModalStore();
   const cameraCurve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-27, 17, -15),
     new THREE.Vector3(12, 7.4, -16), // About
@@ -123,7 +111,6 @@ export default function Scene({
 
   return (
     <>
-      <DebugCurve curve={cameraCurve} />
       <Environment preset="sunset" />
       <Suspense fallback={null}>
         <CityFinal currentProgress={scrollProgress} />

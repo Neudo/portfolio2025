@@ -31,7 +31,7 @@ export default function CityFinal({
   const [googleHovered, setGoogleHovered] = useState(false);
   const [linkedinHovered, setLinkedinHovered] = useState(false);
   const [globalHovered, setGlobalHovered] = useState(false);
-  const busRef = useRef(null);
+  const busRef = useRef<any>(null);
 
   const githubRef = useRef<any>(null);
   const googleRef = useRef<any>(null);
@@ -61,7 +61,7 @@ export default function CityFinal({
   // colors panels
 
   // about
-  if (currentProgress >= 0.117 && currentProgress < 0.13) {
+  if (currentProgress >= 0.117 && currentProgress < 0.14) {
     panelColor = "#06923E";
   }
 
@@ -94,7 +94,7 @@ export default function CityFinal({
   }
 
   useFrame(() => {
-    if (currentProgress >= 0.117 && currentProgress < 0.13) {
+    if (currentProgress >= 0.117 && currentProgress < 0.14) {
       currentTextScale.current = THREE.MathUtils.lerp(
         currentTextScale.current,
         targetTextScale.current,
@@ -137,7 +137,10 @@ export default function CityFinal({
     }
 
     if (currentProgress >= 0.01 && currentProgress < 0.1) {
-      busRef.current.position.y += 0.2;
+      if (busRef.current && busRef.current.position.y <= -20) {
+        console.log(busRef.current.position.y);
+        busRef.current.position.y += 0.2;
+      }
     }
   });
   const handleClick = (elementId: string) => {

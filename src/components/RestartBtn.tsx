@@ -1,22 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Html, useCursor } from "@react-three/drei";
 import { useModalStore } from "../stores/modalStore";
 
 export default function RestartBtn() {
-  const { scrollProgress, targetScrollProgress, resetScrollProgress } =
-    useModalStore();
+  const { scrollProgress, resetScrollProgress } = useModalStore();
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 
   const handleRestart = () => {
-    console.log(
-      "Before reset - scrollProgress:",
-      scrollProgress,
-      "targetScrollProgress:",
-      targetScrollProgress
-    );
     resetScrollProgress();
-    console.log("After reset - both should be 0");
   };
 
   if (scrollProgress < 1) return;
