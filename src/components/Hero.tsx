@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <div
-      className={`bg-green-950 text-white p-4 md:p-16 h-full flex items-end l-0 w-full absolute transition-all duration-500 ease-in-out ${experienceStarted ? "top-[-100%]" : "top-0"} left-0 z-20`}
+      className={`bg-green-950 text-white p-4 md:p-16 h-full flex items-end l-0 w-full absolute transition-all duration-500 ease-in-out ${experienceStarted ? "top-[-100%]" : "top-0"} left-0 z-40`}
     >
       <div className="flex flex-col w-full mx-auto h-full items-center justify-center">
         <div className="max-w-[1410px] mx-auto w-full flex items-center">

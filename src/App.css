@@ -46,6 +46,9 @@ button {
 body {
   background-color: var(--background-color);
 }
+body.front-page {
+  background-color: #052e15;
+}
 
 h1,
 h2,

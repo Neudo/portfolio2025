@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { Suspense } from "react";
 import * as THREE from "three";
 import CityFinal from "./models/CityFinal";
-import { Environment } from "@react-three/drei";
+import { Environment, Sky } from "@react-three/drei";
 import { useModalStore } from "../stores/modalStore";
 
 export default function Scene({
@@ -77,7 +77,24 @@ export default function Scene({
       }
     }
   };
+  const { theme } = useModalStore();
 
+  const skyProps = {
+    day: {
+      sunPosition: [0, 1, 0] as [number, number, number],
+      turbidity: 10,
+      rayleigh: 0.22,
+      mieCoefficient: 0.01,
+      mieDirectionalG: 1,
+    },
+    night: {
+      sunPosition: [1, 0, 0] as [number, number, number],
+      turbidity: 0,
+      rayleigh: 10,
+      mieCoefficient: 0.03,
+      mieDirectionalG: 0.5,
+    },
+  };
   useFrame(() => {
     if (camera) {
       const newProgress = THREE.MathUtils.lerp(
@@ -112,7 +129,9 @@ export default function Scene({
 
   return (
     <>
-      <Environment preset="sunset" />
+      {/* Animated Sky */}
+      <Environment preset={theme === "day" ? "sunset" : "night"} />
+      <Sky {...skyProps[theme === "day" ? "day" : "night"]} distance={300} />
       <Suspense fallback={null}>
         <CityFinal currentProgress={scrollProgress} />
       </Suspense>
