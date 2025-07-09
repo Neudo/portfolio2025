@@ -1,23 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Scene from "./Scene";
 import { useModalStore } from "@/stores/modalStore";
+import RestartBtn from "@/components/RestartBtn";
 
 // EXPERIENCE
 export default function Experience() {
   const camera1 = useRef<any>(null);
   const controls1 = useRef<any>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const targetScrollProgress = useRef(0);
   const scrollSpeed = 0.0019;
 
   const lerpFactor = 0.02;
 
   const isSwiping = useRef(false);
 
-  // Modal
-  const { isModalOpen } = useModalStore();
+  // Modal and scroll state
+  const { isModalOpen, scrollProgress, targetScrollProgress, setTargetScrollProgress } = useModalStore();
 
   useEffect(() => {
     if (isModalOpen) {
@@ -28,7 +27,7 @@ export default function Experience() {
       if (isModalOpen) return;
 
       if (scrollProgress <= 1) {
-        targetScrollProgress.current += Math.sign(e.deltaY) * scrollSpeed;
+        setTargetScrollProgress(targetScrollProgress + Math.sign(e.deltaY) * scrollSpeed);
       }
     };
 
@@ -39,8 +38,7 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
-      targetScrollProgress.current +=
-        Math.sign(e.movementY) * scrollSpeed * 0.2;
+      setTargetScrollProgress(targetScrollProgress + Math.sign(e.movementY) * scrollSpeed * 0.2);
     };
 
     const handlePointerUp = () => {
@@ -66,11 +64,9 @@ export default function Experience() {
         <ambientLight intensity={0.4} />
         <Scene
           camera={camera1}
-          scrollProgress={scrollProgress}
-          setScrollProgress={setScrollProgress}
-          targetScrollProgress={targetScrollProgress}
           lerpFactor={lerpFactor}
         />
+        <RestartBtn />
         {/* <DebugScene camera={camera1} /> */}
         <PerspectiveCamera ref={camera1} fov={70} makeDefault />
         <OrbitControls ref={controls1} camera={camera1.current} />

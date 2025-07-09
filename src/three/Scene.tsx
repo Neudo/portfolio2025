@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import * as THREE from "three";
 import CityFinal from "./models/CityFinal";
 import { Environment } from "@react-three/drei";
+import { useModalStore } from "../stores/modalStore";
 
 const DebugCurve = ({ curve }: { curve: any }) => {
   const points = curve.getPoints(500);
@@ -19,17 +20,12 @@ const DebugCurve = ({ curve }: { curve: any }) => {
 
 export default function Scene({
   camera,
-  setScrollProgress,
-  scrollProgress,
-  targetScrollProgress,
   lerpFactor,
 }: {
   camera?: any;
-  setScrollProgress?: any;
-  scrollProgress?: any;
-  targetScrollProgress?: any;
   lerpFactor?: any;
 }) {
+  const { scrollProgress, targetScrollProgress, setScrollProgress } = useModalStore();
   const cameraCurve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-27, 17, -15),
     new THREE.Vector3(12, 7.4, -16), // About
@@ -95,20 +91,17 @@ export default function Scene({
   };
 
   useFrame(() => {
-    if (camera && targetScrollProgress) {
+    if (camera) {
       const newProgress = THREE.MathUtils.lerp(
         scrollProgress,
-        targetScrollProgress.current,
+        targetScrollProgress,
         lerpFactor
       );
 
       setScrollProgress(newProgress);
 
       const point = cameraCurve.getPoint(newProgress);
-      if (newProgress >= 0.95 && newProgress <= 0.9998) {
-        console.log(camera.current.position, "is pos");
-        console.log(camera.current.rotation, "is rotation");
-      }
+
       if (newProgress <= 0.9999) {
         camera.current.position.copy(point);
       } else {

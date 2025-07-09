@@ -5,14 +5,21 @@ interface ModalState {
   isModalOpen: boolean;
   modalTitle: string;
   modalContent: any;
+  scrollProgress: number;
+  targetScrollProgress: number;
   openModal: (title: string, content: JSX.Element) => void;
   closeModal: () => void;
+  setScrollProgress: (progress: number) => void;
+  setTargetScrollProgress: (progress: number) => void;
+  resetScrollProgress: () => void;
 }
 
 export const useModalStore = create<ModalState>((set) => ({
   isModalOpen: false,
   modalTitle: "",
   modalContent: "",
+  scrollProgress: 0,
+  targetScrollProgress: 0,
 
   openModal: (title: string, content: JSX.Element) =>
     set({
@@ -27,4 +34,13 @@ export const useModalStore = create<ModalState>((set) => ({
       modalTitle: "",
       modalContent: "",
     }),
+
+  setScrollProgress: (progress: number) =>
+    set({ scrollProgress: progress }),
+
+  setTargetScrollProgress: (progress: number) =>
+    set({ targetScrollProgress: progress }),
+
+  resetScrollProgress: () =>
+    set({ scrollProgress: 0, targetScrollProgress: 0 }),
 }));

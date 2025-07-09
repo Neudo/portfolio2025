@@ -136,8 +136,8 @@ export default function CityFinal({
       linkedinRef.current.scale.setScalar(linkedinCurrentScale.current);
     }
 
-    if (currentProgress >= 0.29 && currentProgress < 0.45) {
-      busRef.current.position.z -= 10;
+    if (currentProgress >= 0.01 && currentProgress < 0.1) {
+      busRef.current.position.y += 0.2;
     }
   });
   const handleClick = (elementId: string) => {
@@ -392,6 +392,7 @@ export default function CityFinal({
             geometry={nodes.macchina001_texture004_0.geometry}
             material={materials["texture.004"]}
             position={[3.49, -47.42, 0]}
+            ref={busRef}
           />
         </group>
         <group
@@ -917,8 +918,7 @@ export default function CityFinal({
           receiveShadow
           geometry={nodes.bus_bus_0.geometry}
           material={materials.material}
-          ref={busRef}
-          position={[3593.868, 563.373, 1308.048]}
+          position={[3593.868, 563.373, 980.48]}
           rotation={[-Math.PI / 2, 0, -Math.PI]}
           scale={100}
         />
