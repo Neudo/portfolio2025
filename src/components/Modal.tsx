@@ -1,6 +1,7 @@
 import { CircleX } from "lucide-react";
 import { useModalStore } from "../stores/modalStore";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 export default function Modal() {
   const { isModalOpen, modalTitle, modalContent, closeModal } = useModalStore();
@@ -45,9 +46,25 @@ export default function Modal() {
           <CircleX />
         </button>
         <div className="modal-content-header">
-          <h1 className="modal-title text-3xl mb-6">{modalTitle}</h1>
+          <motion.h1
+            className="modal-title text-3xl mb-6"
+            initial={{ opacity: 0, x: -120 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {modalTitle}
+          </motion.h1>
         </div>
-        <div className="modal-body">{modalContent}</div>
+        <motion.div
+          className="modal-body"
+          initial={{ opacity: 0, x: -90 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
+        >
+          {modalContent}
+        </motion.div>
       </div>
     </>
   );

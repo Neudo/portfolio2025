@@ -71,6 +71,7 @@ span {
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 0;
+  border-radius: 0.5rem;
 }
 
 .modal-body p {

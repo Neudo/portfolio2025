@@ -32,14 +32,14 @@ function RouteComponent() {
 
   return (
     <Bounded>
-      <article className="mx-auto px-4 py-8">
+      <article className="mx-auto mt-16 px-4 py-8">
         {work.preview && (
           <div className="relative mb-4">
-            <div className="overlay w-full h-[65vh]">
+            <div className="overlay w-full h-[65vh] overflow-hidden">
               <img
                 src={work.preview}
                 alt={work.title}
-                className="w-full object-cover rounded-lg h-full"
+                className="w-full object-cover rounded-lg overflow-hidden h-full"
               />
               <header className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-20">
                 <motion.h1

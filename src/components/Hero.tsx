@@ -56,10 +56,13 @@ export default function Hero() {
             </div>
           </div>
           <div>
-            <img
-              className="rounded-sm hidden sm:block"
+            <motion.img
+              className="rounded-sm hidden sm:block shadow-lg"
               src={imageQuentin}
               alt="Photo de Quentin, Développeur web"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             />
           </div>
         </div>
