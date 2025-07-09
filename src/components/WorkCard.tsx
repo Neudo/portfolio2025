@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 type Props = {
   title: string;
   description: string;
@@ -20,8 +21,12 @@ export default function WorkCard({
   tags,
 }: Props) {
   return (
-    <div
+    <motion.div
       className={`relative w-full overflow-hidden mb-8 md:mb-0 group ${index === 2 ? "" : ""}`}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.2 }}
     >
       <a
         href={url}
@@ -65,6 +70,6 @@ export default function WorkCard({
         </div>
       </a>
       <h3 className="mt-2 text-xl">{title}</h3>
-    </div>
+    </motion.div>
   );
 }

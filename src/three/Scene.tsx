@@ -88,18 +88,19 @@ export default function Scene({
 
       setScrollProgress(newProgress);
 
-      const point = cameraCurve.getPoint(newProgress);
+      if (newProgress >= 0) {
+        const point = cameraCurve.getPoint(newProgress);
 
-      if (newProgress <= 0.9999) {
-        camera.current.position.copy(point);
-      } else {
-        camera.current.position.x = 4;
-        camera.current.position.y = 7;
-        camera.current.position.z = 20;
+        if (newProgress <= 0.9999) {
+          camera.current.position.copy(point);
+        } else {
+          camera.current.position.x = 4;
+          camera.current.position.y = 7;
+          camera.current.position.z = 20;
+        }
       }
-
       const targetRotation = getLerpedRotation(newProgress);
-      if (newProgress <= 0.9999) {
+      if (newProgress <= 0.9999 && targetRotation) {
         camera.current.rotation.copy(targetRotation);
       } else {
         camera.current.rotation.x = -0.54;

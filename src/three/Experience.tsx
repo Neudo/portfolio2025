@@ -33,9 +33,8 @@ export default function Experience() {
       if (isModalOpen || !experienceStarted) return;
 
       if (scrollProgress <= 1) {
-        setTargetScrollProgress(
-          targetScrollProgress + Math.sign(e.deltaY) * scrollSpeed
-        );
+        const newProgress = targetScrollProgress + Math.sign(e.deltaY) * scrollSpeed;
+        setTargetScrollProgress(Math.max(0, Math.min(1, newProgress)));
       }
     };
 
@@ -46,9 +45,8 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
-      setTargetScrollProgress(
-        targetScrollProgress + Math.sign(e.movementY) * scrollSpeed * 0.2
-      );
+      const newProgress = targetScrollProgress + Math.sign(e.movementY) * scrollSpeed * 0.2;
+      setTargetScrollProgress(Math.max(0, Math.min(1, newProgress)));
     };
 
     const handlePointerUp = () => {
