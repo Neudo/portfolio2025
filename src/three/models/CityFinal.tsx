@@ -138,7 +138,6 @@ export default function CityFinal({
 
     if (currentProgress >= 0.01 && currentProgress < 0.1) {
       if (busRef.current && busRef.current.position.y <= -20) {
-        console.log(busRef.current.position.y);
         busRef.current.position.y += 0.2;
       }
     }
