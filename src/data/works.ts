@@ -24,6 +24,18 @@ export const works = [
     goal: "Concevoir un site performant et intuitif permettant au photographe de mettre régulièrement à jour son portfolio tout en offrant une navigation fluide sur mobile et desktop. Le site intègre une galerie dynamique classée par thèmes, des albums privés protégés par mot de passe pour partager facilement des sessions confidentielles avec ses modèles, et un formulaire de contact optimisé pour générer de nouvelles demandes de shooting.",
   },
   {
+    url: "/works/vitalisite",
+    title: "Vitalisite",
+    description: "Site + thème Wordpress pour professionelles de santé",
+    preview: "/public/images/visuel-abphoto.jpg",
+    color: "#03055E",
+    tags: ["Next.js", "WordPress", "Front-end", "Back-end"],
+    categories: ["Création de site web", "Création d'un thème WordPress"],
+    presentation:
+      "Projet Personnel, création d'un site en Next.js pour vendre le thème, une API pour gérer les licenses et envoyer les mails ainsi que le thème Wordpress.",
+    goal: "L'idée ici était de créer un thème pour les profesionneles de santé, afin qu'ils puissent avoir un thème facile à configuré, documenté et moderne pour leurs activités. Vous pouvez visiter le site démo ici : https://www.demo.vitalisite.com/",
+  },
+  {
     url: "/works/academie-des-technologies",
     title: "Académie des téchnologies",
     description:
