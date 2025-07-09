@@ -1,6 +1,6 @@
-import { Billboard, useCursor, useGLTF, Text } from "@react-three/drei";
+import { useCursor, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { type JSX, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { GLTF } from "three-stdlib";
 import { useModalStore } from "@/stores/modalStore";
 import About from "@/components/Modals/About";
@@ -33,6 +33,7 @@ export default function CityFinal({
   const [googleHovered, setGoogleHovered] = useState(false);
   const [linkedinHovered, setLinkedinHovered] = useState(false);
   const [globalHovered, setGlobalHovered] = useState(false);
+  const busRef = useRef(null);
 
   const githubRef = useRef<any>(null);
   const googleRef = useRef<any>(null);
@@ -115,6 +116,10 @@ export default function CityFinal({
         0.08
       );
       linkedinRef.current.scale.setScalar(linkedinCurrentScale.current);
+    }
+
+    if (currentProgress >= 0.29 && currentProgress < 0.45) {
+      busRef.current.position.z -= 10;
     }
   });
   const handleClick = (elementId: string) => {
@@ -330,8 +335,6 @@ export default function CityFinal({
         onClick={() =>
           openLink("https://www.linkedin.com/in/quentin-bassalair-05556b190/")
         }
-        // onPointerOver={() => setHovered(true)}
-        // onPointerOut={() => setHovered(false)}
       >
         <group
           position={[
@@ -895,7 +898,8 @@ export default function CityFinal({
           receiveShadow
           geometry={nodes.bus_bus_0.geometry}
           material={materials.material}
-          position={[3593.868, 563.373, 978.048]}
+          ref={busRef}
+          position={[3593.868, 563.373, 1308.048]}
           rotation={[-Math.PI / 2, 0, -Math.PI]}
           scale={100}
         />

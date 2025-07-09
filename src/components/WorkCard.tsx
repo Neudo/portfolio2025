@@ -6,7 +6,9 @@ type Props = {
   url: string;
   index: number;
   style?: string;
+  tags?: string[];
 };
+
 export default function WorkCard({
   title,
   description,
@@ -15,7 +17,10 @@ export default function WorkCard({
   url,
   index,
   style,
+  tags,
 }: Props) {
+  console.log(tags);
+
   return (
     <div
       className={`relative w-full overflow-hidden mb-8 md:mb-0 group ${index === 2 ? "" : ""}`}
@@ -39,11 +44,24 @@ export default function WorkCard({
           style={{ backgroundColor: color }}
         >
           {style !== "modal" && (
-            <p className="text-slate-200 group-hover:opacity-100 opacity-0 delay-300 transition-opacity">
-              {description}
-            </p>
+            <>
+              <p className="text-slate-200 text-xl group-hover:opacity-100 opacity-0 delay-300 transition-opacity pr-4">
+                {description}
+              </p>
+              {tags && (
+                <div className="flex-1 mt-3 ">
+                  {tags?.map((tag) => {
+                    return (
+                      <p className="bg-black mr-2 text-slate-200 text-xs py-0.5 px-2 rounded-md w-fit inline-flex items-center justify-center">
+                        {tag}
+                      </p>
+                    );
+                  })}
+                </div>
+              )}
+            </>
           )}
-          <div className="px-4 py-2 font-bold bg-slate-50  hover:bg-slate-200 transition-all inline-block rounded-sm text-center max-w-[320px] mx-auto">
+          <div className="px-4 py-2 font-bold bg-slate-50  hover:bg-slate-200 transition-all inline-block rounded-md text-center max-w-[320px] mx-auto">
             Découvrir
           </div>
         </div>

@@ -52,7 +52,7 @@ function RouteComponent() {
                   {work.tags.map((tag: string, index: number) => (
                     <span
                       key={index}
-                      className="bg-green-900  px-3 py-1 rounded-full text-sm"
+                      className="bg-green-900  px-3 py-1 rounded-full text-sm text-slate-200"
                     >
                       {tag}
                     </span>
@@ -60,7 +60,7 @@ function RouteComponent() {
                 </div>
 
                 <div className="">
-                  <span className="bg-blue-500 text-black px-3 py-1 rounded-full text-sm">
+                  <span className="bg-blue-500 text-black px-3 py-1 rounded-full text-sm text-slate-200">
                     {work.categories[0]}
                   </span>
                 </div>
