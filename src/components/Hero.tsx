@@ -27,7 +27,7 @@ export default function Hero() {
               <Cta
                 text="Télécharger mon CV"
                 download
-                href="/public/quentin-bassalair-cv.pdf"
+                href="/quentin-bassalair-cv.pdf"
               />
               <Cta
                 text="Découvrir"
