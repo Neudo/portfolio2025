@@ -8,12 +8,16 @@ import { useModalStore } from "../stores/modalStore";
 export default function Scene({
   camera,
   lerpFactor,
+  setScrollProgress,
+  targetScrollProgress,
+  scrollProgress,
 }: {
   camera?: any;
   lerpFactor?: any;
+  setScrollProgress?: any;
+  targetScrollProgress?: any;
+  scrollProgress?: any;
 }) {
-  const { scrollProgress, targetScrollProgress, setScrollProgress } =
-    useModalStore();
   const cameraCurve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-27, 17, -15),
     new THREE.Vector3(12, 7.4, -16), // About
@@ -99,7 +103,7 @@ export default function Scene({
     if (camera) {
       const newProgress = THREE.MathUtils.lerp(
         scrollProgress,
-        targetScrollProgress,
+        targetScrollProgress.current,
         lerpFactor
       );
 
