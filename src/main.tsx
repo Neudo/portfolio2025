@@ -1,7 +1,6 @@
 // import { StrictMode } from 'react'  // Temporarily disabled
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
-import ReactGA from "react-ga4";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
@@ -9,15 +8,45 @@ import { routeTree } from "./routeTree.gen";
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
 
-// Initialize Google Analytics
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-if (GA_MEASUREMENT_ID) {
-  ReactGA.initialize(GA_MEASUREMENT_ID, {
-    gtagOptions: {
-      debug_mode: import.meta.env.DEV,
-    },
-  });
+// Extend Window interface for gtag
+declare global {
+  interface Window {
+    gtag: (
+      command: "config" | "event" | "js" | "set",
+      targetId: string | Date,
+      config?: any
+    ) => void;
+    dataLayer: any[];
+  }
 }
+
+// Initialize Google Analytics
+const initializeGA = () => {
+  const GA_MEASUREMENT_ID = "G-16PE0QL6C0";
+
+  // Create and append gtag script
+  const gtagScript = document.createElement("script");
+  gtagScript.async = true;
+  gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(gtagScript);
+
+  // Initialize gtag
+  window.dataLayer = window.dataLayer || [];
+  function gtag(
+    _command: "config" | "event" | "js" | "set",
+    _targetId: string | Date,
+    _config?: any
+  ) {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+
+  gtag("js", new Date());
+  gtag("config", GA_MEASUREMENT_ID);
+};
+
+// Initialize GA
+initializeGA();
 
 // Create a new router instance
 const router = createRouter({
