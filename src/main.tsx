@@ -1,12 +1,23 @@
 // import { StrictMode } from 'react'  // Temporarily disabled
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import ReactGA from "react-ga4";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
+
+// Initialize Google Analytics
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+if (GA_MEASUREMENT_ID) {
+  ReactGA.initialize(GA_MEASUREMENT_ID, {
+    gtagOptions: {
+      debug_mode: import.meta.env.DEV,
+    },
+  });
+}
 
 // Create a new router instance
 const router = createRouter({

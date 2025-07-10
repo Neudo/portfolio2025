@@ -11,6 +11,7 @@ import { useModalStore } from "@/stores/modalStore";
 import Credits from "@/components/Modals/Credits";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export default function SceneUi() {
   const {
@@ -20,7 +21,8 @@ export default function SceneUi() {
     setFromUiScrollProgress,
     experienceStarted,
   } = useModalStore();
-
+  
+  const { trackThemeChange, trackModalOpen, trackScrollProgress } = useAnalytics();
   const [startAnimation, setStartAnimation] = useState(false);
 
   useEffect(() => {
@@ -32,25 +34,32 @@ export default function SceneUi() {
     <>
       <div className="fixed top-2 right-2 md:top-4 md:right-4 z-30 flex gap-2">
         <motion.button
-          whileTap={{ scale: 1.5 }}
+          whileTap={{ scale: 1.3 }}
           initial={{ y: 0 }}
           whileInView={{ y: startAnimation ? 0 : -80 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: 0.7 }}
           className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-color duration-300 ease-in-out"
-          onClick={() => setTheme(theme === "day" ? "night" : "day")}
+          onClick={() => {
+            const newTheme = theme === "day" ? "night" : "day";
+            setTheme(newTheme);
+            trackThemeChange(newTheme);
+          }}
         >
           {theme === "day" ? <Sun size={18} /> : <Moon size={18} />}
         </motion.button>
 
         <motion.button
-          whileTap={{ scale: 1.5 }}
+          whileTap={{ scale: 1.3 }}
           initial={{ y: 0 }}
           whileInView={{ y: startAnimation ? 0 : -80 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: 0.8 }}
           className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
-          onClick={() => openModal("Informations", <Credits />)}
+          onClick={() => {
+            openModal("Informations", <Credits />);
+            trackModalOpen("Informations");
+          }}
         >
           <Info size={18} />
         </motion.button>
@@ -66,28 +75,40 @@ export default function SceneUi() {
         <motion.button
           whileTap={{ scale: 2.5 }}
           className="bg-slate-200 p-4  rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
-          onClick={() => setFromUiScrollProgress(0.12)}
+          onClick={() => {
+            setFromUiScrollProgress(0.12);
+            trackScrollProgress(0.12);
+          }}
         >
           <User size={20} />
         </motion.button>
         <motion.button
           whileTap={{ scale: 2.5 }}
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
-          onClick={() => setFromUiScrollProgress(0.73)}
+          onClick={() => {
+            setFromUiScrollProgress(0.73);
+            trackScrollProgress(0.73);
+          }}
         >
           <PencilRuler size={20} />
         </motion.button>
         <motion.button
           whileTap={{ scale: 2.5 }}
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
-          onClick={() => setFromUiScrollProgress(0.862)}
+          onClick={() => {
+            setFromUiScrollProgress(0.862);
+            trackScrollProgress(0.862);
+          }}
         >
           <BookCopy size={20} />
         </motion.button>
         <motion.button
           whileTap={{ scale: 2.5 }}
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
-          onClick={() => setFromUiScrollProgress(0.99)}
+          onClick={() => {
+            setFromUiScrollProgress(0.99);
+            trackScrollProgress(0.99);
+          }}
         >
           <Handshake size={20} />
         </motion.button>
