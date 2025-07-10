@@ -57,7 +57,7 @@ export default function Experience() {
       if (!isSwiping.current) return;
       if (lastTouchY.current !== null) {
         const deltaY = e.touches[0].clientY - lastTouchY.current;
-        const touchMultiplier = 1.4;
+        const touchMultiplier = 0.5;
         targetScrollProgress.current +=
           Math.sign(deltaY) * scrollSpeed * touchMultiplier;
         // Clamp between 0 and 1 to prevent camera going underground or too high
