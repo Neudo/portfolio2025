@@ -1,4 +1,4 @@
-import { Linkedin } from "lucide-react";
+import { Contact, Linkedin, Mail } from "lucide-react";
 
 export default function Header() {
   return (
@@ -11,14 +11,16 @@ export default function Header() {
           <a href="/works">Projets</a>
         </li>
         <li>
-          <a href="mailto:quentin.bassalair@gmail.com">Me contacter</a>
+          <a href="mailto:quentin.bassalair@gmail.com">
+            <Mail size={20} />
+          </a>
         </li>
         <li>
           <a
             href="https://www.linkedin.com/in/quentin-bassalair-05556b190/"
             target="_blank"
           >
-            <Linkedin size={24} color="#1166C2" />
+            <Linkedin size={20} color="#1166C2" />
           </a>
         </li>
       </ul>

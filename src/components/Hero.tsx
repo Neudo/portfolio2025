@@ -2,20 +2,12 @@ import imageQuentin from "@/../public/images/quentin-img.jpg";
 import Cta from "./layout/ui/Cta";
 import { useModalStore } from "@/stores/modalStore";
 import { motion } from "motion/react";
-import { useEffect } from "react";
 
 export default function Hero() {
   const { setExperienceStarted, experienceStarted } = useModalStore();
   const startExperience = () => {
     setExperienceStarted(true);
   };
-
-  useEffect(() => {
-    console.log("🚀 Hero component mounted");
-    return () => {
-      console.log("💀 Hero component unmounted");
-    };
-  }, []);
 
   return (
     <div
@@ -52,7 +44,7 @@ export default function Hero() {
               Spécialiste PHP, Wordpress, React, React Native & Node.js sur
               Paris.
             </motion.p>
-            <div className="flex flex-wrap gap-x-2">
+            <div className="flex flex-wrap gap-x-2 gap-y-4 sm:gap-y-0 ">
               <Cta
                 text="Télécharger mon CV"
                 download
