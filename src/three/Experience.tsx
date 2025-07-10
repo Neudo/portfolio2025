@@ -10,10 +10,10 @@ export default function Experience() {
   const camera1 = useRef<any>(null);
   const controls1 = useRef<any>(null);
   const scrollSpeed = 0.007;
-  const scrollSpeedMobile = 0.0009;
   const { experienceStarted } = useModalStore();
   const targetScrollProgress = useRef(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const lastTouchY = useRef<number | null>(null);
 
   const lerpFactor = 0.02;
 
@@ -34,12 +34,8 @@ export default function Experience() {
       if (scrollProgress <= 1) {
         targetScrollProgress.current +=
           Math.sign(normalized.pixelY) *
-          (window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed) *
+          scrollSpeed *
           Math.min(Math.abs(normalized.pixelY) / 100, 1);
-        console.log(
-          "Scroll speed ->" +
-            scrollSpeed * Math.min(Math.abs(normalized.pixelY) / 100, 1)
-        );
       }
     };
 
@@ -47,15 +43,28 @@ export default function Experience() {
       if (isModalOpen || !experienceStarted) return;
       isSwiping.current = true;
     };
-
-    const handlePointerMove = (e: PointerEvent) => {
+    const handleTouchStart = (e: TouchEvent) => {
+      console.log("handleTouchStart");
+      if (isModalOpen) return;
+      isSwiping.current = true;
+      lastTouchY.current = e.touches[0].clientY;
+    };
+    const handleToucheMove = (e: TouchEvent) => {
+      console.log("handleToucheMove");
       if (!isSwiping.current) return;
-      const currentScrollSpeed =
-        window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed;
-      const newProgress =
-        targetScrollProgress.current +
-        Math.sign(e.movementY) * currentScrollSpeed * 20;
-      targetScrollProgress.current = Math.max(0, Math.min(1, newProgress));
+      if (lastTouchY.current !== null) {
+        const deltaY = e.touches[0].clientY - lastTouchY.current;
+        const touchMultiplier = 0.3;
+        targetScrollProgress.current +=
+          Math.sign(deltaY) * scrollSpeed * touchMultiplier;
+      }
+      lastTouchY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = () => {
+      console.log("handleTouchEnd");
+      isSwiping.current = false;
+      lastTouchY.current = null;
     };
 
     const handlePointerUp = () => {
@@ -64,14 +73,19 @@ export default function Experience() {
 
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("pointerdown", handlePointerDown);
-    window.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("pointerup", handlePointerUp);
+
+    window.addEventListener("touchmove", handleToucheMove);
+    window.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("touchstart", handleTouchStart);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("pointerdown", handlePointerDown);
-      window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("touchmove", handleToucheMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchstart", handleTouchStart);
     };
   }, [isModalOpen, scrollProgress, experienceStarted]);
 
