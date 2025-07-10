@@ -10,7 +10,7 @@ export default function Experience() {
   const camera1 = useRef<any>(null);
   const controls1 = useRef<any>(null);
   const scrollSpeed = 0.007;
-  const scrollSpeedMobile = 0.0009;
+  const scrollSpeedMobile = 0.00009;
   const { experienceStarted } = useModalStore();
   const targetScrollProgress = useRef(0);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -46,7 +46,8 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
-      const currentScrollSpeed = window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed;
+      const currentScrollSpeed =
+        window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed;
       const newProgress =
         targetScrollProgress.current +
         Math.sign(e.movementY) * currentScrollSpeed * 20;
