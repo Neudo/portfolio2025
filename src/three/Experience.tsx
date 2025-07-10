@@ -36,6 +36,11 @@ export default function Experience() {
           Math.sign(normalized.pixelY) *
           scrollSpeed *
           Math.min(Math.abs(normalized.pixelY) / 100, 1);
+        // Clamp between 0 and 1 to prevent camera going underground or too high
+        targetScrollProgress.current = Math.max(
+          0,
+          Math.min(1, targetScrollProgress.current)
+        );
       }
     };
 
@@ -44,25 +49,27 @@ export default function Experience() {
       isSwiping.current = true;
     };
     const handleTouchStart = (e: TouchEvent) => {
-      console.log("handleTouchStart");
       if (isModalOpen) return;
       isSwiping.current = true;
       lastTouchY.current = e.touches[0].clientY;
     };
     const handleToucheMove = (e: TouchEvent) => {
-      console.log("handleToucheMove");
       if (!isSwiping.current) return;
       if (lastTouchY.current !== null) {
         const deltaY = e.touches[0].clientY - lastTouchY.current;
-        const touchMultiplier = 0.3;
+        const touchMultiplier = 1.4;
         targetScrollProgress.current +=
           Math.sign(deltaY) * scrollSpeed * touchMultiplier;
+        // Clamp between 0 and 1 to prevent camera going underground or too high
+        targetScrollProgress.current = Math.max(
+          0,
+          Math.min(1, targetScrollProgress.current)
+        );
       }
       lastTouchY.current = e.touches[0].clientY;
     };
 
     const handleTouchEnd = () => {
-      console.log("handleTouchEnd");
       isSwiping.current = false;
       lastTouchY.current = null;
     };
@@ -100,7 +107,6 @@ export default function Experience() {
           targetScrollProgress={targetScrollProgress}
           scrollProgress={scrollProgress}
         />
-        {/* <DebugScene camera={camera1} /> */}
         <PerspectiveCamera ref={camera1} fov={70} makeDefault />
         <OrbitControls ref={controls1} camera={camera1.current} />
       </Canvas>
