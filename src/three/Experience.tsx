@@ -46,9 +46,10 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
+      const currentScrollSpeed = window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed;
       const newProgress =
         targetScrollProgress.current +
-        Math.sign(e.movementY) * scrollSpeed * 20;
+        Math.sign(e.movementY) * currentScrollSpeed * 20;
       targetScrollProgress.current = Math.max(0, Math.min(1, newProgress));
     };
 
