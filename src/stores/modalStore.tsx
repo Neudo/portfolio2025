@@ -5,7 +5,7 @@ interface ModalState {
   isModalOpen: boolean;
   modalTitle: string;
   modalContent: any;
-  scrollProgress: number;
+  fromUiScrollProgress: number | null;
   targetScrollProgress: number;
   openModal: (title: string, content: JSX.Element) => void;
   closeModal: () => void;
@@ -13,13 +13,14 @@ interface ModalState {
   setExperienceStarted: (started: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
+  setFromUiScrollProgress: (progress: number) => void;
 }
 
 export const useModalStore = create<ModalState>((set) => ({
   isModalOpen: false,
   modalTitle: "",
   modalContent: "",
-  scrollProgress: 0,
+  fromUiScrollProgress: null,
   targetScrollProgress: 0,
   experienceStarted: false,
   theme: "day",
@@ -42,4 +43,6 @@ export const useModalStore = create<ModalState>((set) => ({
     set({ experienceStarted: started }),
 
   setTheme: (theme: string) => set({ theme }),
+  setFromUiScrollProgress: (progress: number) =>
+    set({ fromUiScrollProgress: progress }),
 }));

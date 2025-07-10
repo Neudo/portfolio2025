@@ -57,7 +57,7 @@ export default function Modal() {
           </motion.h1>
         </div>
         <motion.div
-          className="modal-body"
+          className="modal-body pb-32"
           initial={{ opacity: 0, x: -90 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.1 }}

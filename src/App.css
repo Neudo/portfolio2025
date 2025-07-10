@@ -32,7 +32,6 @@ body,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  touch-action: none;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +47,7 @@ body {
 }
 body.front-page {
   background-color: #052e15;
+  touch-action: none;
 }
 
 h1,

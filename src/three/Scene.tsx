@@ -18,6 +18,7 @@ export default function Scene({
   targetScrollProgress?: any;
   scrollProgress?: any;
 }) {
+  const { fromUiScrollProgress, setFromUiScrollProgress } = useModalStore();
   const cameraCurve = new THREE.CatmullRomCurve3([
     new THREE.Vector3(-27, 17, -15),
     new THREE.Vector3(12, 7.4, -16), // About
@@ -108,6 +109,16 @@ export default function Scene({
       );
 
       setScrollProgress(newProgress);
+
+      if (fromUiScrollProgress !== null) {
+        // Set target to desired position and let lerp handle smooth transition
+        targetScrollProgress.current = fromUiScrollProgress;
+
+        // Clear the UI scroll progress once we're close enough to the target
+        if (Math.abs(newProgress - fromUiScrollProgress) < 0.01) {
+          setFromUiScrollProgress(null);
+        }
+      }
 
       if (newProgress >= 0) {
         const point = cameraCurve.getPoint(newProgress);

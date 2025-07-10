@@ -43,7 +43,7 @@ export default function WorkCard({
           />
         </div>
         <div
-          className={`absolute top-[-100%] group-hover:top-0 transition-all duration-350 ease-out rounded-sm left-0 w-full h-full flex p-4 flex-col ${style !== "modal" ? "justify-between" : "justify-center"}`}
+          className={`absolute top-[-100%] group-hover:top-0 hidden md:flex transition-all duration-350 ease-out rounded-sm left-0 w-full h-full  p-4 flex-col ${style !== "modal" ? "justify-between" : "justify-center"}`}
           style={{ backgroundColor: color }}
         >
           {style !== "modal" && (
