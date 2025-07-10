@@ -20,6 +20,7 @@ export default function Hero() {
               className="italic ml-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.6 }}
             >
               Disponible immédiatement
@@ -28,6 +29,7 @@ export default function Hero() {
               className="text-5xl font-chillax-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.3 }}
             >
               Développeur Web & Mobile
@@ -36,6 +38,7 @@ export default function Hero() {
               className="text-lg mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
               Spécialiste PHP, Wordpress, React, React Native & Node.js sur
@@ -62,6 +65,7 @@ export default function Hero() {
               alt="Photo de Quentin, Développeur web"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.3, delay: 0.2 }}
             />
           </div>

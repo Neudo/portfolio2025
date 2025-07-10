@@ -1,8 +1,9 @@
 import { Info, Moon, Sun } from "lucide-react";
 import { useModalStore } from "@/stores/modalStore";
+import Credits from "@/components/Modals/Credits";
 
 export default function SceneUi() {
-  const { setTheme } = useModalStore();
+  const { setTheme, openModal } = useModalStore();
   return (
     <div className="fixed top-4 right-4 z-30 flex gap-2">
       <button
@@ -17,7 +18,10 @@ export default function SceneUi() {
       >
         <Moon />
       </button>
-      <button className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer">
+      <button
+        className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer"
+        onClick={() => openModal("Crédits", <Credits />)}
+      >
         <Info />
       </button>
     </div>

@@ -31,8 +31,6 @@ export default function Experience() {
       const normalized = normalizeWheel(e);
 
       if (scrollProgress <= 1) {
-        console.log(normalized.pixelY);
-
         targetScrollProgress.current +=
           Math.sign(normalized.pixelY) *
           scrollSpeed *

@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import "../App.css";
-import Experience from "@/three/Experience";
 import Modal from "@/components/Modal";
 import Hero from "@/components/Hero";
 import SceneUi from "@/components/layout/ui/SceneUi";
+import Experience from "@/three/Experience";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      {/* <LoadingScreen /> */}
       <Hero />
       <Modal />
       <SceneUi />
