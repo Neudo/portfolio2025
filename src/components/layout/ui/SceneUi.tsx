@@ -32,23 +32,24 @@ export default function SceneUi() {
     <>
       <div className="fixed top-2 right-2 md:top-4 md:right-4 z-30 flex gap-2">
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          initial={{ y: 60 }}
-          whileInView={{ y: startAnimation ? 0 : -60 }}
+          whileTap={{ scale: 1.5 }}
+          initial={{ y: 0 }}
+          whileInView={{ y: startAnimation ? 0 : -80 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: 0.7 }}
-          className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer"
+          className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-color duration-300 ease-in-out"
           onClick={() => setTheme(theme === "day" ? "night" : "day")}
         >
           {theme === "day" ? <Sun size={18} /> : <Moon size={18} />}
         </motion.button>
+
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          initial={{ y: 60 }}
-          whileInView={{ y: startAnimation ? 0 : -60 }}
+          whileTap={{ scale: 1.5 }}
+          initial={{ y: 0 }}
+          whileInView={{ y: startAnimation ? 0 : -80 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: 0.8 }}
-          className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer"
+          className="bg-slate-200 px-4 py-2 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => openModal("Informations", <Credits />)}
         >
           <Info size={18} />
@@ -63,29 +64,29 @@ export default function SceneUi() {
       >
         {/* <div className="h-2 w-[50vw] left-[20vw] bg-slate-200 absolute top-1/2 -translate-y-1/2  z-[-1]"></div> */}
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          className="bg-slate-200 p-4  rounded-md cursor-pointer"
+          whileTap={{ scale: 2.5 }}
+          className="bg-slate-200 p-4  rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => setFromUiScrollProgress(0.12)}
         >
           <User size={20} />
         </motion.button>
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          className="bg-slate-200 p-4 rounded-md cursor-pointer"
+          whileTap={{ scale: 2.5 }}
+          className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => setFromUiScrollProgress(0.73)}
         >
           <PencilRuler size={20} />
         </motion.button>
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          className="bg-slate-200 p-4 rounded-md cursor-pointer"
+          whileTap={{ scale: 2.5 }}
+          className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => setFromUiScrollProgress(0.862)}
         >
           <BookCopy size={20} />
         </motion.button>
         <motion.button
-          whileTap={{ scale: 1.2 }}
-          className="bg-slate-200 p-4 rounded-md cursor-pointer"
+          whileTap={{ scale: 2.5 }}
+          className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => setFromUiScrollProgress(0.99)}
         >
           <Handshake size={20} />

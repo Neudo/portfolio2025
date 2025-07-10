@@ -13,7 +13,7 @@ interface ModalState {
   setExperienceStarted: (started: boolean) => void;
   theme: string;
   setTheme: (theme: string) => void;
-  setFromUiScrollProgress: (progress: number) => void;
+  setFromUiScrollProgress: (progress: number | null) => void;
 }
 
 export const useModalStore = create<ModalState>((set) => ({
@@ -43,6 +43,6 @@ export const useModalStore = create<ModalState>((set) => ({
     set({ experienceStarted: started }),
 
   setTheme: (theme: string) => set({ theme }),
-  setFromUiScrollProgress: (progress: number) =>
+  setFromUiScrollProgress: (progress: number | null) =>
     set({ fromUiScrollProgress: progress }),
 }));
