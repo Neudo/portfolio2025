@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Scene from "./Scene";
 import { useModalStore } from "@/stores/modalStore";
-import normalizeWheel from "normalize-wheel";
+import normalizeWheel from "@/utils/normalizeWheel";
 
 // EXPERIENCE
 export default function Experience() {
@@ -47,10 +47,9 @@ export default function Experience() {
 
     const handlePointerMove = (e: PointerEvent) => {
       if (!isSwiping.current) return;
-      const normalized = normalizeWheel(e);
       const newProgress =
         targetScrollProgress.current +
-        Math.sign(normalized.pixelY) * scrollSpeed * 0.2;
+        Math.sign(e.movementY) * scrollSpeed * 20;
       targetScrollProgress.current = Math.max(0, Math.min(1, newProgress));
     };
 
