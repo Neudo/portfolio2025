@@ -10,7 +10,7 @@ export default function Experience() {
   const camera1 = useRef<any>(null);
   const controls1 = useRef<any>(null);
   const scrollSpeed = 0.007;
-  const scrollSpeedMobile = 0.00009;
+  const scrollSpeedMobile = 0.0009;
   const { experienceStarted } = useModalStore();
   const targetScrollProgress = useRef(0);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -36,6 +36,10 @@ export default function Experience() {
           Math.sign(normalized.pixelY) *
           (window.innerWidth < 768 ? scrollSpeedMobile : scrollSpeed) *
           Math.min(Math.abs(normalized.pixelY) / 100, 1);
+        console.log(
+          "Scroll speed ->" +
+            scrollSpeed * Math.min(Math.abs(normalized.pixelY) / 100, 1)
+        );
       }
     };
 
