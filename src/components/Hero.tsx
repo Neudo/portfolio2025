@@ -2,12 +2,20 @@ import imageQuentin from "@/../public/images/quentin-img.jpg";
 import Cta from "./layout/ui/Cta";
 import { useModalStore } from "@/stores/modalStore";
 import { motion } from "motion/react";
+import { useEffect } from "react";
 
 export default function Hero() {
   const { setExperienceStarted, experienceStarted } = useModalStore();
   const startExperience = () => {
     setExperienceStarted(true);
   };
+
+  useEffect(() => {
+    console.log("🚀 Hero component mounted");
+    return () => {
+      console.log("💀 Hero component unmounted");
+    };
+  }, []);
 
   return (
     <div
