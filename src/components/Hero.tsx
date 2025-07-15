@@ -5,13 +5,13 @@ import { motion } from "motion/react";
 
 export default function Hero() {
   const { setIntroStarted, introStarted } = useModalStore();
-  const startExperience = () => {
+  const startIntro = () => {
     setIntroStarted(true);
   };
 
   return (
     <div
-      className={`bg-green-950 text-white p-4 md:p-16 h-full flex items-end l-0 w-full absolute transition-all duration-500 ease-in-out ${introStarted ? "top-[-100%]" : "top-0"} left-0 z-40`}
+      className={`bg-green-950 text-white p-4 md:p-16 h-full max-h-full flex items-end l-0 w-full absolute transition-all duration-500 ease-in-out ${introStarted ? "top-[-100%]" : "top-0"} left-0 z-40`}
     >
       <div className="flex flex-col w-full mx-auto h-full items-center justify-center">
         <div className="max-w-[1410px] mx-auto w-full flex items-center">
@@ -53,7 +53,7 @@ export default function Hero() {
               <Cta
                 text="Découvrir"
                 variant="outline"
-                onClick={startExperience}
+                onClick={startIntro}
                 classes="animate-bounce delay-anim"
               />
             </div>

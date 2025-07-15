@@ -10,8 +10,8 @@ export default function Intro() {
     <div
       className={`absolute inset-0 z-[39] flex flex-col items-center justify-center transition-all duration-300 ease-in-out bg-slate-600/60 ${experienceStarted ? "translate-y-[-100%]" : "translate-y-0"}`}
     >
-      <div className="flex items-center gap-4 flex-wrap px-4 pt-20">
-        <div className="bg-slate-200/20 p-4 rounded-md flex  items-center justify-center flex-col max-w-[400px]">
+      <div className="flex items-center gap-4 flex-wrap px-4 pt-20 overflow-auto">
+        <div className="bg-slate-200/20 p-4 rounded-md flex  items-center justify-center flex-col max-w-[400px] mx-auto">
           <h2 className="text-white text-2xl mb-4">
             Faites défiler pour explorer l'expérience 3D
           </h2>
@@ -20,14 +20,14 @@ export default function Intro() {
             revenir en arrière.
           </p>
 
-          <div className="w-20">
+          <div className="md:w-20 w-14">
             <Lottie
               options={{ loop: true, autoplay: true, animationData: scroll }}
             />
           </div>
         </div>
 
-        <div className="bg-slate-200/20 p-4 rounded-md flex items-center justify-center flex-col max-w-[400px]">
+        <div className="bg-slate-200/20 p-4 rounded-md flex items-center justify-center flex-col max-w-[400px] mx-auto">
           <h2 className="text-white text-2xl mb-4">
             Cliquer sur les panneaux textuels
           </h2>
@@ -35,7 +35,7 @@ export default function Intro() {
             Cliquez sur les sections pour ouvrir des informations détaillées.
           </p>
 
-          <div className="w-50">
+          <div className="md:w-50 w-28">
             <Lottie
               options={{
                 loop: true,
@@ -48,7 +48,7 @@ export default function Intro() {
       </div>
       <button
         onClick={() => setExperienceStarted(true)}
-        className="bg-slate-200 px-4 py-2 mt-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-color duration-300 ease-in-out"
+        className="bg-slate-200 px-4 py-2 my-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-color duration-300 ease-in-out"
       >
         Compris !
       </button>

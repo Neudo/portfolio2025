@@ -20,8 +20,10 @@ export default function Skills() {
         <li>Nest.js</li>
         <li>Express.js</li>
         <li>Laravel</li>
+        <li>Symfony</li>
         <li>Three.js</li>
         <li>Blender</li>
+        <li>Vue.js</li>
       </ul>
     </>
   );

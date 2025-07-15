@@ -49,7 +49,7 @@ export default function Experience() {
       isSwiping.current = true;
     };
     const handleTouchStart = (e: TouchEvent) => {
-      if (isModalOpen) return;
+      if (isModalOpen || !experienceStarted) return;
       isSwiping.current = true;
       lastTouchY.current = e.touches[0].clientY;
     };
@@ -64,10 +64,6 @@ export default function Experience() {
         targetScrollProgress.current = Math.max(
           0,
           Math.min(1, targetScrollProgress.current)
-        );
-        console.log(
-          "Scroll speed ------>",
-          Math.sign(deltaY) * scrollSpeed * touchMultiplier
         );
       }
       lastTouchY.current = e.touches[0].clientY;
