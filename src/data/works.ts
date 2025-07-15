@@ -37,7 +37,7 @@ export const works = [
   },
   {
     url: "/works/academie-des-technologies",
-    title: "Académie des téchnologies",
+    title: "Académie des technologies",
     description:
       "Refonte d'un site web pour un organisme dédié à la promotion et à la diffusion des innovations technologiques.",
     preview: "/images/visuel-adt.jpg",
