@@ -16,8 +16,7 @@ export default function Intro() {
             Faites défiler pour explorer l'expérience 3D
           </h2>
           <p className="text-white">
-            Faites défiler vers le haut pour avancer, et vers le bas pour
-            revenir en arrière.
+            Faites défiler afin d'avancer ou de revenir en arrière.
           </p>
 
           <div className="md:w-20 w-14">
