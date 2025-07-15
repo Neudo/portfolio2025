@@ -21,7 +21,7 @@ export default function SceneUi() {
     setFromUiScrollProgress,
     experienceStarted,
   } = useModalStore();
-  
+
   const { trackThemeChange, trackModalOpen, trackNavigation } = useGtag();
   const [startAnimation, setStartAnimation] = useState(false);
 
@@ -65,7 +65,7 @@ export default function SceneUi() {
         </motion.button>
       </div>
       <motion.div
-        className="fixed w-full bottom-2 flex justify-center flex-wrap gap-x-4 gap-y-2 left-2 z-30"
+        className="fixed w-full bottom-2 flex justify-center flex-wrap gap-x-4 gap-y-2 left-0 z-30"
         initial={{ y: 60 }}
         whileInView={{ y: startAnimation ? 0 : 60 }}
         viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function SceneUi() {
           className="bg-slate-200 p-4  rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => {
             setFromUiScrollProgress(0.12);
-            trackNavigation('About', 0.12);
+            trackNavigation("About", 0.12);
           }}
         >
           <User size={20} />
@@ -87,7 +87,7 @@ export default function SceneUi() {
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => {
             setFromUiScrollProgress(0.73);
-            trackNavigation('Skills', 0.73);
+            trackNavigation("Skills", 0.73);
           }}
         >
           <PencilRuler size={20} />
@@ -97,7 +97,7 @@ export default function SceneUi() {
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => {
             setFromUiScrollProgress(0.862);
-            trackNavigation('Projects', 0.862);
+            trackNavigation("Projects", 0.862);
           }}
         >
           <BookCopy size={20} />
@@ -107,7 +107,7 @@ export default function SceneUi() {
           className="bg-slate-200 p-4 rounded-md cursor-pointer shadow-sm hover:bg-slate-300 transition-all duration-300 ease-in-out"
           onClick={() => {
             setFromUiScrollProgress(0.99);
-            trackNavigation('Contact', 0.99);
+            trackNavigation("Contact", 0.99);
           }}
         >
           <Handshake size={20} />

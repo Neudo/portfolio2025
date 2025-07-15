@@ -9,6 +9,8 @@ interface ModalState {
   targetScrollProgress: number;
   openModal: (title: string, content: JSX.Element) => void;
   closeModal: () => void;
+  introStarted: boolean;
+  setIntroStarted: (started: boolean) => void;
   experienceStarted: boolean;
   setExperienceStarted: (started: boolean) => void;
   theme: string;
@@ -23,6 +25,7 @@ export const useModalStore = create<ModalState>((set) => ({
   fromUiScrollProgress: null,
   targetScrollProgress: 0,
   experienceStarted: false,
+  introStarted: false,
   theme: "day",
 
   openModal: (title: string, content: JSX.Element) =>
@@ -45,4 +48,5 @@ export const useModalStore = create<ModalState>((set) => ({
   setTheme: (theme: string) => set({ theme }),
   setFromUiScrollProgress: (progress: number | null) =>
     set({ fromUiScrollProgress: progress }),
+  setIntroStarted: (started: boolean) => set({ introStarted: started }),
 }));

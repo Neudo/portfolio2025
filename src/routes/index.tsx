@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import Hero from "@/components/Hero";
 import SceneUi from "@/components/layout/ui/SceneUi";
 import Experience from "@/three/Experience";
+import Intro from "@/components/Intro";
 
 export const Route = createFileRoute("/")({
   component: App,
@@ -25,6 +26,7 @@ function App() {
       <Hero />
       <Modal />
       <SceneUi />
+      <Intro />
       <Experience />
     </>
   );
