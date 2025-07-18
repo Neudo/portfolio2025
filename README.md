@@ -7,8 +7,8 @@
 Clone the repo and install dependencies:
 
 ```bash
-git clone https://github.com/neudo/portfolio.git
-cd portfolio
+git clone https://github.com/Neudo/portfolio2025.git
+cd portfolio2025
 npm install
 # or
 yarn install
